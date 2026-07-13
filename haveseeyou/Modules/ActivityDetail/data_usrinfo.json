@@ -1,0 +1,68 @@
+{
+  "code": 0,
+  "message": "success",
+  "time": "1782729288",
+  "data": {
+    "user_id": 9024721,
+    "usercode": "77799400",
+    "nickname": "月末日渐",
+    "age": 23,
+    "gender": 1,
+    "height": "",
+    "weight": "",
+    "education": "",
+    "occupation": "",
+    "signs": "白羊座",
+    "avatar": "uploads/avatar/9024721/2026-06-29ryTGAdfAOhBE.jpg",
+    "city": "杭州市",
+    "is_auth": 0,
+    "is_rp_auth": 0,
+    "label": [],
+    "like_person_label": [],
+    "hope_relationship_label": [],
+    "arrange_play_city_label": "杭州市",
+    "will_go_city_label": "",
+    "sign": "活泼开朗大美女子",
+    "active_time": "",
+    "remark_name": "",
+    "unlock_private": 0,
+    "unlock_wechat": 0,
+    "wechat_account": "",
+    "is_follow": 0,
+    "is_black": 0,
+    "distance": "",
+    "head_album": [
+      "uploads/avatar/9024721/2026-06-29ryTGAdfAOhBE.jpg",
+      "uploads/album/9024721/2026-06-29jCLybRMspUFC.jpg"
+    ],
+    "album": [
+      {
+        "id": 22578,
+        "user_id": 9024721,
+        "type": 2,
+        "status": 1,
+        "url": "uploads/album/9024721/2026-06-29jCLybRMspUFC.jpg",
+        "video_id": "",
+        "cover_img_url": null,
+        "video_url": null,
+        "price": null,
+        "check_time": 0,
+        "size": 0,
+        "create_time": 1782724567,
+        "admin_time": 1782724745,
+        "admin_id": 148,
+        "notes": ""
+      }
+    ],
+    "dynamic_num": 0,
+    "dynamic": [],
+    "get_gifts": [],
+    "send_gifts": [],
+    "is_vip": 0,
+    "bottom_text": "私聊TA",
+    "extra": {
+      "initial_heart": "认识新朋友,满足兴趣爱好,朋友一起娱乐",
+      "activity": "徒步,livehouse,citywalk"
+    }
+  }
+}

@@ -1,0 +1,143 @@
+PODS:
+  - Alamofire (5.11.1)
+  - AliyunOSSiOS (2.11.2)
+  - CocoaLumberjack (3.9.1):
+    - CocoaLumberjack/Core (= 3.9.1)
+  - CocoaLumberjack/Core (3.9.1)
+  - Kingfisher (7.12.0)
+  - libwebp (1.5.0):
+    - libwebp/demux (= 1.5.0)
+    - libwebp/mux (= 1.5.0)
+    - libwebp/sharpyuv (= 1.5.0)
+    - libwebp/webp (= 1.5.0)
+  - libwebp/demux (1.5.0):
+    - libwebp/webp
+  - libwebp/mux (1.5.0):
+    - libwebp/demux
+  - libwebp/sharpyuv (1.5.0)
+  - libwebp/webp (1.5.0):
+    - libwebp/sharpyuv
+  - MJRefresh (3.7.5)
+  - NEChatKit/NOS (10.9.25):
+    - NECommonKit (= 9.7.7)
+    - NECoreIM2Kit/NOS (= 1.1.8)
+  - NEChatUIKit (10.9.25):
+    - NEChatUIKit/NOS (= 10.9.25)
+  - NEChatUIKit/NOS (10.9.25):
+    - MJRefresh (= 3.7.5)
+    - NEChatKit/NOS
+    - NECommonUIKit (= 9.8.4)
+    - SDWebImageSVGKitPlugin
+    - SDWebImageWebPCoder
+  - NECommonKit (9.7.7):
+    - YXAlog
+  - NECommonUIKit (9.8.4):
+    - NECommonKit
+    - SDWebImage
+  - NECoreIM2Kit/NOS (1.1.8):
+    - NECoreKit (= 9.8.2)
+    - NIMSDK_LITE (= 10.9.81)
+    - NIMSDK_LITE/FTS (= 10.9.81)
+  - NECoreKit (9.8.2):
+    - YXAlog
+  - NIMSDK_LITE (10.9.81):
+    - NIMSDK_LITE/NOS (= 10.9.81)
+    - YXArtemis_XCFramework
+  - NIMSDK_LITE/FTS (10.9.81):
+    - YXArtemis_XCFramework
+  - NIMSDK_LITE/NOS (10.9.81):
+    - YXArtemis_XCFramework
+  - NTESBaseComponent (1.9)
+  - NTESQuickPass (3.6.13):
+    - NTESBaseComponent
+  - PryntTrimmerView (4.0.2)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
+  - SDWebImageSVGKitPlugin (1.4.0):
+    - SDWebImage/Core (~> 5.10)
+    - SVGKit (~> 3.0)
+  - SDWebImageWebPCoder (0.15.0):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.17)
+  - SnapKit (5.7.1)
+  - SteviaLayout (6.2.2)
+  - SVGKit (3.0.0):
+    - CocoaLumberjack (~> 3.0)
+  - YPImagePicker (5.3.2-local):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 6.2.2)
+  - YXAlog (2.0.0)
+  - YXArtemis_XCFramework (1.1.6)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.8)
+  - AliyunOSSiOS
+  - Kingfisher (~> 7.10)
+  - NEChatUIKit (~> 10.9.0)
+  - NIMSDK_LITE
+  - NTESQuickPass (~> 3.6.3)
+  - SnapKit (~> 5.7)
+  - YPImagePicker (from `./LocalPods/YPImagePicker`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AliyunOSSiOS
+    - CocoaLumberjack
+    - Kingfisher
+    - libwebp
+    - MJRefresh
+    - NEChatKit
+    - NEChatUIKit
+    - NECommonKit
+    - NECommonUIKit
+    - NECoreIM2Kit
+    - NECoreKit
+    - NIMSDK_LITE
+    - NTESBaseComponent
+    - NTESQuickPass
+    - PryntTrimmerView
+    - SDWebImage
+    - SDWebImageSVGKitPlugin
+    - SDWebImageWebPCoder
+    - SnapKit
+    - SteviaLayout
+    - SVGKit
+    - YXAlog
+    - YXArtemis_XCFramework
+
+EXTERNAL SOURCES:
+  YPImagePicker:
+    :path: "./LocalPods/YPImagePicker"
+
+SPEC CHECKSUMS:
+  Alamofire: eec6cd8f73b242b59e34153a606a909eb9864b14
+  AliyunOSSiOS: 6d6b668b82ac0c0ea2313412bcb5530b42ec97ab
+  CocoaLumberjack: e4ba3b414dfca8c1916c6303d37f63b3a95134c6
+  Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  NEChatKit: 75b14e6512aa5478d64e490f811ab479498871f3
+  NEChatUIKit: 195d6b5881b04acba85091c1cf9060cd36004131
+  NECommonKit: 994b457636b32750c91b94067f74aadac2b3d00b
+  NECommonUIKit: 677409b4a6702eccb0c861feca0567377edcc50d
+  NECoreIM2Kit: ca037e4b89901c89b5f2402ccd2736f5e711919f
+  NECoreKit: 944beb7881aa3c329612cd17c61c6b27aa1cf1aa
+  NIMSDK_LITE: 4cbeb018d54a328c1a719e4357520526ec052b79
+  NTESBaseComponent: 6d1fd6802c2340005d35db9daafe15ee6b9b976c
+  NTESQuickPass: 965a3f4905ef76765303d07fb1df50b3e0670429
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
+  SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
+  SDWebImageWebPCoder: 0e06e365080397465cc73a7a9b472d8a3bd0f377
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  SteviaLayout: c85f591c5af5f0b3883d904984b7d41e15b4e582
+  SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
+  YPImagePicker: c386251fbe562333ef77d7319c8650e20e467cb2
+  YXAlog: af6b7dc0a5d5ee5544f85aaa9825202a58cd3013
+  YXArtemis_XCFramework: d9a8b9439d7a6c757ed00ada53a6d2dd9b13f9c7
+
+PODFILE CHECKSUM: e93540910d60f2b9e0219c44ea3683f674ac1e70
+
+COCOAPODS: 1.16.2

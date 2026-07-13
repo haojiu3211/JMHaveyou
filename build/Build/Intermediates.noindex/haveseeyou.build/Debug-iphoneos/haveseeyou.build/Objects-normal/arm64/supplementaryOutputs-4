@@ -1,0 +1,51 @@
+{
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/ViewModel/ActivityDetailViewModel.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewModel.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewModel.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewModel.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewModel.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewModel.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/Group/Model/GroupModel.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupModel.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupModel.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupModel.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupModel.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupModel.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/Group/View/GroupCardView.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupCardView.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupCardView.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupCardView.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupCardView.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupCardView.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/Group/View/GroupNavigationView.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupNavigationView.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupNavigationView.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupNavigationView.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupNavigationView.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupNavigationView.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/Group/View/GroupViewController.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewController.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewController.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewController.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewController.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewController.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/Group/ViewModel/GroupViewModel.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewModel.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewModel.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewModel.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewModel.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GroupViewModel.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/Home/Model/ActivityModel.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityModel.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityModel.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityModel.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityModel.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityModel.swiftdeps"
+  }
+}

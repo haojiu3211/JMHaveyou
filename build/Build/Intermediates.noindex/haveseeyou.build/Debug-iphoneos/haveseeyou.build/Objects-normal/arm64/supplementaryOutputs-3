@@ -1,0 +1,51 @@
+{
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Extensions/UIView+Extension.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/UIView+Extension.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/UIView+Extension.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/UIView+Extension.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/UIView+Extension.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/UIView+Extension.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/Model/ActivityDetailAPI.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailAPI.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailAPI.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailAPI.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailAPI.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailAPI.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/Model/ActivityDetailModel.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailModel.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailModel.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailModel.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailModel.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailModel.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/View/ActivityDetailViewController.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewController.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewController.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewController.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewController.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ActivityDetailViewController.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/View/DetailBannerView.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/DetailBannerView.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/DetailBannerView.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/DetailBannerView.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/DetailBannerView.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/DetailBannerView.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/View/ImagePreviewController.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ImagePreviewController.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ImagePreviewController.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ImagePreviewController.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ImagePreviewController.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ImagePreviewController.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Modules/ActivityDetail/View/ReportBlockAlertView.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ReportBlockAlertView.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ReportBlockAlertView.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ReportBlockAlertView.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ReportBlockAlertView.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/ReportBlockAlertView.swiftdeps"
+  }
+}

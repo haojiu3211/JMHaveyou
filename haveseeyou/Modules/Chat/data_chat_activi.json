@@ -1,0 +1,42 @@
+{
+  "code": 0,
+  "message": "获取成功",
+  "time": "1782698011",
+  "data": {
+    "id": 13,
+    "title": "你烧烤烧烤",
+    "content": "随着",
+    "images": "uploads/album/8999168/2026-06-26VVZMjtrCCenf.jpg",
+    "people_num": 1,
+    "gender": 0,
+    "activity_time": 0,
+    "is_long_term": 1,
+    "location": "阿拉善盟",
+    "province_id": 0,
+    "city_id": 152900,
+    "district_id": 0,
+    "fee_type": "shared",
+    "status": "published",
+    "createtime": 1782439846,
+    "updatetime": 1782443912,
+    "rejected_msg": "",
+    "remark": null,
+    "activity_type": [
+      {
+        "meet_activity_id": 13,
+        "name": "citywalk"
+      }
+    ],
+    "user": {
+      "id": 8999168,
+      "usercode": "84158191",
+      "nickname": "睡觉睡觉",
+      "avatar": "uploads/avatar/8999168/2026-06-26AXlUgDVzGOqN.jpg",
+      "birthday": "2007-06-26",
+      "gender": 1,
+      "age": 19,
+      "qq_account": "哥哥哥哥过",
+      "wechat_account": ""
+    }
+  }
+}

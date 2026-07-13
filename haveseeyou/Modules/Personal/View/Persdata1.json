@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "message": "success",
+  "time": "1782385028",
+  "data": {
+    "user_id": 8999164,
+    "usercode": "40005306",
+    "nickname": "我也不",
+    "age": 18,
+    "gender": 1,
+    "height": "",
+    "weight": "",
+    "education": "",
+    "occupation": "",
+    "signs": "摩羯座",
+    "avatar": "uploads/avatar/8999164/2026-06-25XOkrYlcLOxok.jpg",
+    "city": "广州市",
+    "is_auth": 0,
+    "is_rp_auth": 0,
+    "label": [],
+    "like_person_label": [],
+    "hope_relationship_label": [],
+    "arrange_play_city_label": "广州市",
+    "will_go_city_label": "",
+    "sign": "这个g7/：¥我99997，而",
+    "active_time": "",
+    "remark_name": "",
+    "unlock_private": 0,
+    "unlock_wechat": 0,
+    "wechat_account": "24****346",
+    "is_follow": 0,
+    "is_black": 0,
+    "distance": "",
+    "head_album": [
+      "uploads/avatar/8999164/2026-06-25XOkrYlcLOxok.jpg"
+    ],
+    "album": [],
+    "dynamic_num": 0,
+    "dynamic": [],
+    "get_gifts": [],
+    "send_gifts": [],
+    "is_vip": 0,
+    "bottom_text": "私聊TA",
+    "extra": {
+      "initial_heart": "找同好搭子,寻找恋爱/脱单,满足兴趣爱好,学习新技能,打发枯燥生活",
+      "activity": "骑行,跑步,滑雪"
+    }
+  }
+}
+
+

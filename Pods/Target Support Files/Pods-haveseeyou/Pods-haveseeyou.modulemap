@@ -1,0 +1,6 @@
+framework module Pods_haveseeyou {
+  umbrella header "Pods-haveseeyou-umbrella.h"
+
+  export *
+  module * { export * }
+}

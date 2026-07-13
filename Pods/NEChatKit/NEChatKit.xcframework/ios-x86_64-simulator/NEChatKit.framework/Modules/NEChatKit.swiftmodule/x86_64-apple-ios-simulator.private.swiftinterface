@@ -1,0 +1,934 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name NEChatKit
+import CoreMedia
+import Foundation
+@_exported import NEChatKit
+import NECommonKit
+import NECoreIM2Kit
+import NECoreKit
+import NIMSDK
+import Photos
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers open class AIRepo : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.AIRepo
+  @objc public var aiProvider: NECoreIM2Kit.AIProvider
+  @objc open func addAIListener(_ listener: any V2NIMAIListener)
+  @objc open func removeAIListener(_ listener: any V2NIMAIListener)
+  @objc open func getAIUserList(_ completion: @escaping ([V2NIMAIUser]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func proxyAIModelCall(_ params: V2NIMProxyAIModelCallParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func stopAIModelStreamCall(_ params: V2NIMAIModelStreamCallStopParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func createUserAIBot(_ params: V2NIMCreateUserAIBotParams, _ completion: @escaping (V2NIMCreateUserAIBotResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getUserAIBotList(_ params: V2NIMGetUserAIBotListParams?, _ completion: @escaping (V2NIMGetUserAIBotListResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getUserAIBot(_ params: V2NIMGetUserAIBotParams, _ completion: @escaping (V2NIMUserAIBot?, Foundation.NSError?) -> Swift.Void)
+  @objc open func updateUserAIBot(_ params: V2NIMUpdateUserAIBotParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func deleteUserAIBot(_ params: V2NIMDeleteUserAIBotParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func bindUserAIBot(accid: Swift.String, token: Swift.String, qrCode: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func refreshUserAIBotToken(_ params: V2NIMRefreshUserAIBotTokenParams, _ completion: @escaping (V2NIMRefreshUserAIBotTokenResult?, Foundation.NSError?) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers public class BaseMessage {
+  @objc deinit
+}
+public let ModuleName: Swift.String
+public let imkitVersion: Swift.String
+public let imkitDir: Swift.String
+public let keyReplyMsgKey: Swift.String
+public let keyAllowAtAll: Swift.String
+public let keyAllowTopMessage: Swift.String
+public let keyTopMessage: Swift.String
+public let keyEnableCloudConversation: Swift.String
+public let keyEnableCloudMessageSearch: Swift.String
+public let keyTeamJoinActionReadTime: Swift.String
+public let keyCustomMessage: Swift.String
+public let allowAtAllValue: Swift.String
+public let allowAtManagerValue: Swift.String
+public let multiForwardFileName: Swift.String
+public let revokeLocalMessage: Swift.String
+public let revokeLocalMessageTitle: Swift.String
+public let revokeLocalMessageContent: Swift.String
+public let revokeLocalMessageTime: Swift.String
+public let NEAISearchPlugin: Swift.String
+public let collectionTypeOffset: Swift.Int
+public enum NENotificationName {
+  public static let popGroupChatVC: Foundation.Notification.Name
+  public static let clearValidationMessageUnreadCount: Foundation.Notification.Name
+  public static let friendCacheInit: Foundation.Notification.Name
+  public static let didTapHeader: Foundation.Notification.Name
+  public static let clearContactSubscribeNotificationName: Foundation.Notification.Name
+  public static let checkoutSubscribeNotificationName: Foundation.Notification.Name
+  public static let deleteConversationNotificationName: Foundation.Notification.Name
+  public static let changeLanguage: Foundation.Notification.Name
+}
+@objc public protocol ChatServiceDelegate : ObjectiveC.NSObjectProtocol {
+  @objc optional func setupInit(_ params: [Swift.String : Any]?)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class ChatKitClient : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.ChatKitClient
+  @objc public var beforeSend: ((_ viewController: UIKit.UIViewController, _ param: NEChatKit.MessageSendParams) -> NEChatKit.MessageSendParams?)?
+  @objc public var beforeSendCompletion: ((UIKit.UIViewController, NEChatKit.MessageSendParams, @escaping (NEChatKit.MessageSendParams?) -> Swift.Void) -> Swift.Void)?
+  @objc public var sendMessageCallback: ((_ viewController: UIKit.UIViewController, _ result: V2NIMSendMessageResult?, _ error: V2NIMError?, _ progress: Swift.UInt) -> Swift.Void)?
+  @objc open func setupInit(isFun: Swift.Bool)
+  @objc open func registerInit(_ service: any NEChatKit.ChatServiceDelegate)
+  @objc public func buryDataPoints(_ component: Swift.String)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ChatLocaitonModel : ObjectiveC.NSObject {
+  @objc public var title: Swift.String
+  @objc public var address: Swift.String
+  @objc public var city: Swift.String
+  @objc public var lat: CoreFoundation.CGFloat
+  @objc public var lng: CoreFoundation.CGFloat
+  @objc public var distance: Swift.Int
+  @objc public var attribute: Foundation.NSMutableAttributedString?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol NENotiListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onReceiveCustomNotifications(_ customNotifications: [V2NIMCustomNotification])
+  @objc optional func onReceiveBroadcastNotifications(_ boradcastNotifications: [V2NIMBroadcastNotification])
+}
+@objc public protocol NEMessageListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func beforeSend(_ param: NEChatKit.MessageSendParams) -> NEChatKit.MessageSendParams?
+  @objc optional func beforeSend(_ param: NEChatKit.MessageSendParams, _ completion: @escaping (NEChatKit.MessageSendParams?) -> Swift.Void)
+  @objc optional func sendMessageCallback(_ result: V2NIMSendMessageResult?, _ error: V2NIMError?, _ progress: Swift.UInt)
+}
+@objc public protocol NEChatListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onSendMessage(_ message: V2NIMMessage)
+  @objc optional func sendMessageFailed(_ message: V2NIMMessage, _ error: Foundation.NSError)
+  @objc optional func onReceiveMessages(_ messages: [V2NIMMessage])
+  @objc optional func onReceiveP2PMessageReadReceipts(_ readReceipts: [V2NIMP2PMessageReadReceipt])
+  @objc optional func onReceiveTeamMessageReadReceipts(_ readReceipts: [V2NIMTeamMessageReadReceipt])
+  @objc optional func onMessageRevokeNotifications(_ revokeNotifications: [V2NIMMessageRevokeNotification])
+  @objc optional func onMessagePinNotification(_ pinNotification: V2NIMMessagePinNotification)
+  @objc optional func onMessageQuickCommentNotification(_ notification: V2NIMMessageQuickCommentNotification)
+  @objc optional func onMessageDeletedNotifications(_ messageDeletedNotification: [V2NIMMessageDeletedNotification])
+  @objc optional func onClearHistoryNotifications(_ clearHistoryNotification: [V2NIMClearHistoryNotification])
+  @objc optional func onReceiveMessagesModified(_ messages: [V2NIMMessage])
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class ChatRepo : ObjectiveC.NSObject, V2NIMMessageListener, V2NIMNotificationListener {
+  @objc public static let shared: NEChatKit.ChatRepo
+  @objc public static var conversationId: Swift.String
+  @objc public static var sessionId: Swift.String
+  @objc final public let chatProvider: NECoreIM2Kit.ChatProvider
+  @objc final public let notificationProvider: NECoreIM2Kit.NotificationProvider
+  @objc open func messageConfig() -> V2NIMMessageConfig
+  @objc open func pushConfig() -> V2NIMMessagePushConfig
+  @objc open func getSendMessageParams() -> V2NIMSendMessageParams
+  @objc open func addMessageSendListener(_ listener: any NEChatKit.NEMessageListener)
+  @objc open func removeMessageSendListener(_ listener: any NEChatKit.NEMessageListener)
+  @objc open func addChatListener(_ listener: any NEChatKit.NEChatListener)
+  @objc open func removeChatListener(_ listener: any NEChatKit.NEChatListener)
+  @objc open func addMessageListener(_ listener: any V2NIMMessageListener)
+  @objc open func removeMessageListener(_ listener: any V2NIMMessageListener)
+  @objc open func addNotiListener(_ listener: any NEChatKit.NENotiListener)
+  @objc open func removeNotiListener(_ listener: any NEChatKit.NENotiListener)
+  @objc open func addNoticationListener(_ listener: any V2NIMNotificationListener)
+  @objc open func removeNoticationListener(_ listener: any V2NIMNotificationListener)
+  @objc open func sendCustomNotification(conversationId: Swift.String, content: Swift.String, params: V2NIMSendCustomNotificationParams, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func sendMessage(message: V2NIMMessage, conversationId: Swift.String, params: V2NIMSendMessageParams? = nil, _ completion: @escaping (V2NIMSendMessageResult?, Foundation.NSError?, Swift.UInt) -> Swift.Void)
+  @objc open func replyMessage(message: V2NIMMessage, replyMessage: V2NIMMessage, params: V2NIMSendMessageParams, _ completion: @escaping (V2NIMSendMessageResult?, Foundation.NSError?, Swift.UInt) -> Swift.Void)
+  open func insertMessageToLocal(message: V2NIMMessage, conversationId: Swift.String, senderId: Swift.String? = nil, createTime: Foundation.TimeInterval? = nil, _ completion: @escaping (V2NIMMessage?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getMessageList(option: V2NIMMessageListOption, _ completion: @escaping ([V2NIMMessage]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getMessageListByRefers(_ messageRefers: [V2NIMMessageRefer], _ completion: @escaping ([V2NIMMessage]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchCloudMessages(params: V2NIMMessageSearchParams, _ completion: @escaping ([NEChatKit.HistoryMessageModel]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchCloudMessagesEx(params: V2NIMMessageSearchExParams, _ completion: @escaping (V2NIMMessageSearchResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchLocalMessages(params: V2NIMMessageSearchExParams, _ completion: @escaping (V2NIMMessageSearchResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func markP2PMessageRead(message: V2NIMMessage, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func markTeamMessagesRead(messages: [V2NIMMessage], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func deleteMessage(message: V2NIMMessage, serverExtension: Swift.String = "", onlyDeleteLocal: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func deleteMessages(messages: [V2NIMMessage], serverExtension: Swift.String = "", onlyDeleteLocal: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func clearHistoryMessage(option: V2NIMClearHistoryMessageOption, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func revokeMessage(message: V2NIMMessage, params: V2NIMMessageRevokeParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getP2PMessageReceipt(conversationId: Swift.String, _ completion: @escaping (V2NIMP2PMessageReadReceipt?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMessageReceipts(messages: [V2NIMMessage], _ completion: @escaping ([V2NIMTeamMessageReadReceipt]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMessageReceiptDetail(message: V2NIMMessage, memberAccountIds: Swift.Set<Swift.String>, _ completion: @escaping (V2NIMTeamMessageReadReceiptDetail?, Foundation.NSError?) -> Swift.Void)
+  @objc open func pinMessage(message: V2NIMMessage, serverExtension: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func unpinMessage(messageRefer: V2NIMMessageRefer, serverExtension: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getPinnedMessageList(conversationId: Swift.String, _ completion: @escaping ([V2NIMMessagePin]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func addCollection(_ params: V2NIMAddCollectionParams, _ completion: @escaping (V2NIMCollection?, Foundation.NSError?) -> Swift.Void)
+  open func removeCollections(_ collections: [V2NIMCollection], _ completion: @escaping (Swift.Int32?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getCollections(_ option: V2NIMCollectionOption, _ completion: @escaping ([V2NIMCollection]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func voiceToText(_ params: V2NIMVoiceToTextParams, _ completion: @escaping (Swift.String?, Foundation.NSError?) -> Swift.Void)
+  @objc open func stopAIStreamMessage(_ message: V2NIMMessage, _ params: V2NIMMessageAIStreamStopParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func regenAIMessage(_ message: V2NIMMessage, _ params: V2NIMMessageAIRegenParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func modifyMessage(_ message: V2NIMMessage, _ params: V2NIMModifyMessageParams, _ completion: @escaping (V2NIMModifyMessageResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func updatePinMessage(message: V2NIMMessage, serverExtension: Swift.String, _ completion: @escaping (V2NIMError?) -> Swift.Void)
+  @objc open func getMessageListEx(option: V2NIMMessageListOption, _ completion: @escaping (V2NIMMessageListResult?, V2NIMError?) -> Swift.Void)
+  @objc open func getCloudMessageList(option: V2NIMCloudMessageListOption, _ completion: @escaping (V2NIMMessageListResult?, V2NIMError?) -> Swift.Void)
+  @objc open func getThreadMessageList(option: V2NIMThreadMessageListOption, _ completion: @escaping (V2NIMThreadMessageListResult?, V2NIMError?) -> Swift.Void)
+  @objc open func getLocalThreadMessageList(messageRefer: V2NIMMessageRefer, _ completion: @escaping (V2NIMThreadMessageListResult?, V2NIMError?) -> Swift.Void)
+  @objc open func updateMessageLocalExtension(message: V2NIMMessage, localExtension: Swift.String, _ completion: @escaping (V2NIMMessage?, V2NIMError?) -> Swift.Void)
+  @objc open func updateLocalMessage(message: V2NIMMessage, params: V2NIMUpdateLocalMessageParams, _ completion: @escaping (V2NIMMessage?, V2NIMError?) -> Swift.Void)
+  @objc open func insertMessageToLocalEx(message: V2NIMMessage, params: V2NIMMessageInsertParams, _ completion: @escaping (V2NIMMessage?, V2NIMError?) -> Swift.Void)
+  @objc open func importMessagesToLocal(messages: [V2NIMMessage], option: V2NIMImportMessagesToLocalOption, _ completion: @escaping (V2NIMError?) -> Swift.Void)
+  @objc open func clearRoamingMessage(conversationIds: [Swift.String], _ completion: @escaping (V2NIMError?) -> Swift.Void)
+  @objc open func clearLocalMessage(params: V2NIMClearLocalMessageParams?, _ completion: @escaping (V2NIMError?) -> Swift.Void)
+  @objc open func updateCollectionExtension(collection: V2NIMCollection, serverExtension: Swift.String, _ completion: @escaping (V2NIMCollection?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getCollectionListEx(_ option: V2NIMCollectionOption, _ completion: @escaping (V2NIMCollectionListResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func cancelMessageAttachmentUpload(_ message: V2NIMMessage, _ completion: @escaping (V2NIMError?) -> Swift.Void)
+  @objc open func translateText(params: V2NIMTextTranslateParams, _ completion: @escaping (V2NIMTextTranslationResult?, V2NIMError?) -> Swift.Void)
+  @objc open func translateTextContent(_ text: Swift.String, targetLanguage: Swift.String, _ completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
+  @objc open func translateMessage(message: V2NIMMessage, targetLanguage: Swift.String, _ completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
+  @objc open func saveTranslationToLocalExtension(message: V2NIMMessage, info: NEChatKit.TranslationInfo, _ completion: @escaping (V2NIMMessage?, V2NIMError?) -> Swift.Void)
+  @objc open func clearTranslationFromLocalExtension(message: V2NIMMessage, _ completion: ((V2NIMMessage?, V2NIMError?) -> Swift.Void)?)
+  @objc open func onReceive(_ customNotifications: [V2NIMCustomNotification])
+  @objc open func onReceive(_ boradcastNotifications: [V2NIMBroadcastNotification])
+  @objc open func onSend(_ message: V2NIMMessage)
+  @objc open func onReceive(_ messages: [V2NIMMessage])
+  @objc open func onReceive(_ readReceipts: [V2NIMP2PMessageReadReceipt])
+  @objc open func onReceive(_ readReceipts: [V2NIMTeamMessageReadReceipt])
+  @objc open func onMessageRevokeNotifications(_ revokeNotifications: [V2NIMMessageRevokeNotification])
+  @objc open func onMessagePinNotification(_ pinNotification: V2NIMMessagePinNotification)
+  @objc open func onMessageQuickCommentNotification(_ notification: V2NIMMessageQuickCommentNotification)
+  @objc open func onMessageDeletedNotifications(_ messageDeletedNotification: [V2NIMMessageDeletedNotification])
+  @objc open func onClearHistoryNotifications(_ clearHistoryNotification: [V2NIMClearHistoryNotification])
+  @objc open func onReceiveMessagesModified(_ messages: [V2NIMMessage])
+  @objc deinit
+}
+@objcMembers public class Contact {
+  @objc public var account: Swift.String?
+  @objc public var name: Swift.String?
+  @objc public var avatar: Swift.String?
+  @objc public init(account: Swift.String?)
+  @objc deinit
+}
+@objc public enum NEContactChangeType : Swift.Int {
+  case addFriend = 0
+  case update
+  case deleteFriend
+  case addBlock
+  case removeBlock
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol NEContactListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onUserProfileChanged(_ users: [V2NIMUser])
+  @objc optional func onBlockListAdded(_ user: V2NIMUser)
+  @objc optional func onBlockListRemoved(_ accountId: Swift.String)
+  @objc optional func onFriendAdded(_ friendInfo: V2NIMFriend)
+  @objc optional func onFriendDeleted(_ accountId: Swift.String, deletionType: V2NIMFriendDeletionType)
+  @objc optional func onFriendAddApplication(_ application: V2NIMFriendAddApplication)
+  @objc optional func onFriendAddRejected(_ rejectionInfo: V2NIMFriendAddApplication)
+  @objc optional func onFriendInfoChanged(_ friendInfo: V2NIMFriend)
+  @objc optional func onContactChange(_ changeType: NEChatKit.NEContactChangeType, _ contacts: [NECoreIM2Kit.NEUserWithFriend])
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class ContactRepo : ObjectiveC.NSObject, V2NIMUserListener, V2NIMFriendListener {
+  @objc public static let shared: NEChatKit.ContactRepo
+  @objc deinit
+  @objc open func addContactListener(_ listener: any NEChatKit.NEContactListener)
+  @objc open func removeContactListener(_ listener: any NEChatKit.NEContactListener)
+  @objc open func addFriendListener(_ listener: any V2NIMFriendListener)
+  @objc open func removeFriendListener(_ listener: any V2NIMFriendListener)
+  @objc open func addUserListener(_ listener: any V2NIMUserListener)
+  @objc open func removeUserListener(_ listener: any V2NIMUserListener)
+  @objc open func getUserInfo(_ accountIds: [Swift.String]) -> [NECoreIM2Kit.NEUserWithFriend]?
+  @objc open func getContactList(_ completion: @escaping ([NECoreIM2Kit.NEUserWithFriend]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getUserListFromCloud(accountIds: [Swift.String], _ completion: @escaping ([NECoreIM2Kit.NEUserWithFriend]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getFriendList(accountIds: [Swift.String], _ completion: @escaping ([NECoreIM2Kit.NEUserWithFriend]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getUserWithFriend(accountIds: [Swift.String], _ completion: @escaping ([NECoreIM2Kit.NEUserWithFriend]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func addFriend(accountId: Swift.String, params: V2NIMFriendAddParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func deleteFriend(account: Swift.String, params: V2NIMFriendDeleteParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func acceptAddApplication(application: V2NIMFriendAddApplication, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func rejectAddApplication(application: V2NIMFriendAddApplication, postscript: Swift.String? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getAddApplicationList(option: V2NIMFriendAddApplicationQueryOption, _ completion: @escaping (V2NIMFriendAddApplicationResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getUnreadApplicationCount(_ completion: @escaping (Swift.Int, Foundation.NSError?) -> Swift.Void)
+  @objc open func setAddApplicationRead(_ completion: @escaping (Swift.Bool, Foundation.NSError?) -> Swift.Void)
+  @objc open func clearNotification(_ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getBlockList(_ completion: @escaping ([NECoreIM2Kit.NEUserWithFriend]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func addBlockList(accountId: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func removeBlockList(accountId: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func setFriendInfo(accountId: Swift.String, params: V2NIMFriendSetParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func searchFriendByOption(option: V2NIMFriendSearchOption, _ completion: @escaping ([V2NIMFriend]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func setAddApplicationReadEx(application: V2NIMFriendAddApplication?, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func deleteAddApplication(application: V2NIMFriendAddApplication, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func clearAllAddApplicationEx(option: V2NIMFriendClearAddApplicationOption, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func searchUserByOption(option: V2NIMUserSearchOption, _ completion: @escaping ([V2NIMUser]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func checkBlock(accountIds: [Swift.String], _ completion: @escaping ([Swift.String : Foundation.NSNumber]?, Foundation.NSError?) -> Swift.Void)
+  open func getUserListLocal(accountIds: [Swift.String], error: inout V2NIMError?) -> [V2NIMUser]?
+  open func getUserInfoLocal(accountId: Swift.String, error: inout V2NIMError?) -> V2NIMUser?
+  @objc open func checkBlockLocal(accountIds: [Swift.String]) -> [Swift.String : Foundation.NSNumber]?
+  @objc open func updateSelfUserProfile(_ updateParams: V2NIMUserUpdateParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func onUserProfileChanged(_ users: [V2NIMUser])
+  @objc open func onBlockListAdded(_ user: V2NIMUser)
+  @objc open func onBlockListRemoved(_ accountId: Swift.String)
+  @objc open func onFriendAdded(_ friendInfo: V2NIMFriend)
+  @objc open func onFriendDeleted(_ accountId: Swift.String, deletionType: V2NIMFriendDeletionType)
+  @objc open func onFriendAddApplication(_ application: V2NIMFriendAddApplication)
+  @objc open func onFriendAddRejected(_ rejectionInfo: V2NIMFriendAddApplication)
+  @objc open func onFriendInfoChanged(_ friendInfo: V2NIMFriend)
+}
+extension NEChatKit.ContactRepo : NECoreIM2Kit.NEIMKitClientListener {
+  @objc dynamic open func onDataSync(_ type: V2NIMDataSyncType, state: V2NIMDataSyncState, error: V2NIMError?)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ConversationListModel : ObjectiveC.NSObject {
+  @objc public var recentSession: NIMRecentSession?
+  @objc public var userInfo: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var teamInfo: NIMTeam?
+  @objc public var customType: Swift.Int
+  @objc public var localExtension: [Swift.String : Any]?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol NEConversationListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onConversationSyncStarted()
+  @objc optional func onConversationSyncFinished()
+  @objc optional func onConversationSyncFailed(_ error: V2NIMError)
+  @objc optional func onConversationCreated(_ conversation: V2NIMConversation)
+  @objc optional func onConversationDeleted(_ conversationIds: [Swift.String])
+  @objc optional func onConversationChanged(_ conversations: [V2NIMConversation])
+  @objc optional func onTotalUnreadCountChanged(_ unreadCount: Swift.Int)
+  @objc optional func onUnreadCountChangedByFilter(_ filter: V2NIMConversationFilter, _ unreadCount: Swift.Int)
+  @objc optional func onConversationReadTimeUpdated(_ conversationId: Swift.String, _ readTime: Foundation.TimeInterval)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class ConversationRepo : ObjectiveC.NSObject, V2NIMConversationListener {
+  @objc public static let shared: NEChatKit.ConversationRepo
+  @objc final public let conversationProvider: NECoreIM2Kit.ConversationProvider
+  @objc final public let userProvider: NECoreIM2Kit.UserProvider
+  @objc final public let teamProvider: NECoreIM2Kit.TeamProvider
+  @objc final public let chatProvider: NECoreIM2Kit.ChatProvider
+  @objc final public let friendProvider: NECoreIM2Kit.FriendProvider
+  @objc open func addConversationListener(_ listener: any NEChatKit.NEConversationListener)
+  @objc open func removeConversationListener(_ listener: any NEChatKit.NEConversationListener)
+  @objc open func deleteConversation(_ conversationId: Swift.String, _ clearMessage: Swift.Bool = false, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func createConversation(_ conversationId: Swift.String, _ completion: @escaping (V2NIMConversation?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getConversation(_ conversationId: Swift.String, _ completion: @escaping (V2NIMConversation?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getConversationListByIds(_ conversationIds: [Swift.String], _ completion: @escaping ([V2NIMConversation]?, Foundation.NSError?) -> Swift.Void)
+  open func getConversationList(_ offset: Swift.Int64, _ limit: Swift.Int, _ completion: @escaping ([V2NIMConversation]?, Swift.Int64?, Swift.Bool?, Foundation.NSError?) -> Swift.Void)
+  @objc open func setStickTop(_ conversationId: Swift.String, _ stickTop: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTotalUnreadCount() -> Swift.Int
+  @objc open func clearTotalUnreadCount(_ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  open func markConversationRead(_ conversationId: Swift.String, _ completion: @escaping (Foundation.TimeInterval?, Foundation.NSError?) -> Swift.Void)
+  open func getConversationReadTime(_ conversationId: Swift.String, _ completion: @escaping (Foundation.TimeInterval?, Foundation.NSError?) -> Swift.Void)
+  @objc open func clearUnreadCountByIds(_ conversationIds: [Swift.String], _ completion: @escaping ([V2NIMConversationOperationResult]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func onSyncStarted()
+  @objc open func onSyncFinished()
+  @objc open func onSyncFailed(_ error: V2NIMError)
+  @objc open func onConversationCreated(_ conversation: V2NIMConversation)
+  @objc open func onConversationDeleted(_ conversationIds: [Swift.String])
+  @objc open func onConversationChanged(_ conversations: [V2NIMConversation])
+  @objc open func onTotalUnreadCountChanged(_ unreadCount: Swift.Int)
+  @objc public func onUnreadCountChanged(by filter: V2NIMConversationFilter, unreadCount: Swift.Int)
+  @objc public func onConversationReadTimeUpdated(_ conversationId: Swift.String, readTime: Foundation.TimeInterval)
+  @objc open func getStickTopConversationList(_ completion: @escaping ([V2NIMConversation]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func muteConversation(_ conversationId: Swift.String, _ mute: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func clearUnreadCountByGroupId(_ groupId: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func clearUnreadCountByTypes(_ types: [Foundation.NSNumber], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func updateConversation(_ conversationId: Swift.String, _ updateInfo: V2NIMConversationUpdate, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func updateConversationLocalExtension(_ conversationId: Swift.String, _ localExtension: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getConversationListByOption(_ offset: Swift.Int64, _ limit: Swift.Int, _ option: V2NIMConversationOption, _ completion: @escaping (V2NIMConversationResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func subscribeUnreadCountByFilter(_ filter: V2NIMConversationFilter, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func unsubscribeUnreadCountByFilter(_ filter: V2NIMConversationFilter, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ConversationSearchListModel : ObjectiveC.NSObject, Swift.Comparable {
+  public static func < (lhs: NEChatKit.ConversationSearchListModel, rhs: NEChatKit.ConversationSearchListModel) -> Swift.Bool
+  @objc public var userInfo: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var team: V2NIMTeam?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class DeduplicationHelper : ObjectiveC.NSObject, NECoreIM2Kit.NEIMKitClientListener {
+  @objc public var limit: Swift.Int
+  @objc public var revokeMessageIds: Swift.Set<Swift.String>
+  @objc deinit
+  @objc open func onLoginStatus(_ status: V2NIMLoginStatus)
+  @objc open func onKickedOffline(_ detail: V2NIMKickedOfflineDetail)
+  @objc open func clearCache()
+  @objc open func isRevokeMessageSaved(messageId: Swift.String) -> Swift.Bool
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class HistoryMessageModel : ObjectiveC.NSObject {
+  @objc public var fullName: Swift.String?
+  @objc public var shortName: Swift.String?
+  @objc public var avatar: Swift.String?
+  @objc public var content: Swift.String?
+  @objc public var time: Swift.String?
+  @objc public var imMessage: V2NIMMessage?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class IMKitConfigCenter : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.IMKitConfigCenter
+  @objc public var enableTeam: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var enableTeamJoinAgreeModelAuth: Swift.Bool
+  @objc public var enableAtMessage: Swift.Bool
+  @objc public var enableCollectionMessage: Swift.Bool
+  @objc public var enablePinMessage: Swift.Bool
+  @objc public var enableTopMessage: Swift.Bool
+  @objc public var enableOnlineStatus: Swift.Bool
+  @objc public var enableOnlyFriendCall: Swift.Bool
+  @objc public var enableDismissTeamDeleteConversation: Swift.Bool
+  @objc public var enableAIUser: Swift.Bool
+  @objc public var enableAIChatHelper: Swift.Bool
+  @objc public var enableRichTextMessage: Swift.Bool
+  @objc public var enableAntiSpamTipMessage: Swift.Bool
+  @objc public var enableAIStream: Swift.Bool
+  @objc public var enableInsertLocalMsgWhenRevoke: Swift.Bool
+  @objc public var enableCloudMessageSearch: Swift.Bool
+  @objc public var recentForwardListMaxCount: Swift.Int
+  @objc public var teamManagerMaxCount: Swift.Int
+  @objc public var autoTranslationEnableTime: Swift.Double
+  @objc public var translationTargetLanguage: Swift.String
+  @objc deinit
+}
+@objc public protocol IMKitPluginService : ObjectiveC.NSObjectProtocol {
+  @objc optional func registerPlugin(_ text: Swift.String) -> NEChatKit.OperationItem?
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class IMKitPluginManager : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.IMKitPluginManager
+  @objc open func registerPlugin(_ name: Swift.String, _ plugin: any NEChatKit.IMKitPluginService)
+  @objc open func getPlugins(_ findName: Swift.String, _ text: Swift.String) -> [NEChatKit.OperationItem]
+  @objc deinit
+}
+@objc public protocol NELocalConversationListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onLocalConversationSyncStarted()
+  @objc optional func onLocalConversationSyncFinished()
+  @objc optional func onLocalConversationSyncFailed(_ error: V2NIMError)
+  @objc optional func onLocalConversationCreated(_ conversation: V2NIMLocalConversation)
+  @objc optional func onLocalConversationDeleted(_ conversationIds: [Swift.String])
+  @objc optional func onLocalConversationChanged(_ conversations: [V2NIMLocalConversation])
+  @objc optional func onLocalTotalUnreadCountChanged(_ unreadCount: Swift.Int)
+  @objc optional func onLocalUnreadCountChangedByFilter(_ filter: V2NIMLocalConversationFilter, _ unreadCount: Swift.Int)
+  @objc optional func onLocalConversationReadTimeUpdated(_ conversationId: Swift.String, _ readTime: Foundation.TimeInterval)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class LocalConversationRepo : ObjectiveC.NSObject, V2NIMLocalConversationListener {
+  @objc public static let shared: NEChatKit.LocalConversationRepo
+  @objc final public let localConversationProvider: NECoreIM2Kit.LocalConversationProvider
+  @objc final public let userProvider: NECoreIM2Kit.UserProvider
+  @objc final public let teamProvider: NECoreIM2Kit.TeamProvider
+  @objc final public let chatProvider: NECoreIM2Kit.ChatProvider
+  @objc final public let friendProvider: NECoreIM2Kit.FriendProvider
+  @objc open func addLocalConversationListener(_ listener: any NEChatKit.NELocalConversationListener)
+  @objc open func removeLocalConversationListener(_ listener: any NEChatKit.NELocalConversationListener)
+  @objc open func deleteConversation(_ conversationId: Swift.String, _ clearMessage: Swift.Bool = false, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func createConversation(_ conversationId: Swift.String, _ completion: @escaping (V2NIMLocalConversation?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getConversation(_ conversationId: Swift.String, _ completion: @escaping (V2NIMLocalConversation?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getConversationListByIds(_ conversationIds: [Swift.String], _ completion: @escaping ([V2NIMLocalConversation]?, Foundation.NSError?) -> Swift.Void)
+  open func getConversationList(_ offset: Swift.Int, _ limit: Swift.Int, _ completion: @escaping ([V2NIMLocalConversation]?, Swift.Int?, Swift.Bool?, Foundation.NSError?) -> Swift.Void)
+  @objc open func setStickTop(_ conversationId: Swift.String, _ stickTop: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTotalUnreadCount() -> ObjectiveC.NSInteger
+  @objc open func clearTotalUnreadCount()
+  open func markConversationRead(_ conversationId: Swift.String, _ completion: @escaping (Foundation.TimeInterval?, Foundation.NSError?) -> Swift.Void)
+  open func getConversationReadTime(_ conversationId: Swift.String, _ completion: @escaping (Foundation.TimeInterval?, Foundation.NSError?) -> Swift.Void)
+  @objc open func clearUnreadCountByIds(_ conversationIds: [Swift.String], _ completion: @escaping ([V2NIMLocalConversationOperationResult]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func onSyncStarted()
+  @objc open func onSyncFinished()
+  @objc open func onSyncFailed(_ error: V2NIMError)
+  @objc public func onConversationCreated(_ conversation: V2NIMLocalConversation)
+  @objc open func onConversationDeleted(_ conversationIds: [Swift.String])
+  @objc open func onConversationChanged(_ conversations: [V2NIMLocalConversation])
+  @objc open func onTotalUnreadCountChanged(_ unreadCount: Swift.Int)
+  @objc public func onUnreadCountChanged(by filter: V2NIMLocalConversationFilter, unreadCount: Swift.Int)
+  @objc public func onConversationReadTimeUpdated(_ conversationId: Swift.String, readTime: Foundation.TimeInterval)
+  @objc deinit
+}
+@objc public enum MessageType : Swift.Int {
+  case text = 1
+  case image
+  case audio
+  case video
+  case location
+  case notification
+  case file
+  case tip
+  case robot
+  case rtcCallRecord
+  case custom
+  case time
+  case revoke
+  case multiForward
+  case richText
+  case aiStreamText
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol MessageModel : ObjectiveC.NSObjectProtocol {
+  @objc var message: V2NIMMessage? { get set }
+  @objc var type: NEChatKit.MessageType { get set }
+  @objc var customType: Swift.Int { get set }
+  @objc var contentSize: CoreFoundation.CGSize { get set }
+  @objc var offset: CoreFoundation.CGFloat { get set }
+  @objc var height: CoreFoundation.CGFloat { get set }
+  @objc func cellHeight() -> CoreFoundation.CGFloat
+  @objc var shortName: Swift.String? { get set }
+  @objc var fullName: Swift.String? { get set }
+  @objc var avatar: Swift.String? { get set }
+  @objc var isPined: Swift.Bool { get set }
+  @objc var pinAccount: Swift.String? { get set }
+  @objc var pinShowName: Swift.String? { get set }
+  @objc var isReply: Swift.Bool { get set }
+  @objc var replyedModel: (any NEChatKit.MessageModel)? { get set }
+  @objc var replyText: Swift.String? { get set }
+  @objc var isRevoked: Swift.Bool { get set }
+  @objc var isReedit: Swift.Bool { get set }
+  @objc var revokeTime: Foundation.TimeInterval { get set }
+  @objc var readCount: Swift.Int { get set }
+  @objc var unreadCount: Swift.Int { get set }
+  @objc var showSelect: Swift.Bool { get set }
+  @objc var isSelected: Swift.Bool { get set }
+  @objc var inMultiForward: Swift.Bool { get set }
+  @objc var timeContent: Swift.String? { get set }
+  @objc var unkonwMessage: Swift.Bool { get set }
+  @objc init(message: V2NIMMessage?)
+}
+@objc @objcMembers open class MessageSendParams : ObjectiveC.NSObject {
+  @objc public var message: V2NIMMessage
+  @objc public var conversationId: Swift.String?
+  @objc public var params: V2NIMSendMessageParams?
+  @objc public init(message: V2NIMMessage, conversationId: Swift.String? = nil, params: V2NIMSendMessageParams? = nil)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class NEAIRobotManager : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.NEAIRobotManager
+  @objc public var isCacheLoaded: Swift.Bool {
+    get
+  }
+  @objc public var sortedBots: [V2NIMUserAIBot] {
+    @objc get
+  }
+  @objc public var count: Swift.Int {
+    @objc get
+  }
+  @objc public func loadAll(_ completion: ((Foundation.NSError?) -> Swift.Void)? = nil)
+  @objc public func replaceAll(bots: [V2NIMUserAIBot])
+  @objc public func add(_ bot: V2NIMUserAIBot)
+  @objc public func update(_ bot: V2NIMUserAIBot)
+  @objc public func remove(accid: Swift.String)
+  @objc public func getBot(_ accid: Swift.String) -> V2NIMUserAIBot?
+  @objc public func isRobot(_ accid: Swift.String) -> Swift.Bool
+  @objc public func checkIfRobot(_ accid: Swift.String, completion: @escaping (Swift.Bool) -> Swift.Void)
+  @objc deinit
+}
+extension NEChatKit.NEAIRobotManager : NECoreIM2Kit.NEIMKitClientListener {
+  @objc dynamic public func onDataSync(_ type: V2NIMDataSyncType, state: V2NIMDataSyncState, error: V2NIMError?)
+  @objc dynamic public func onLoginStatus(_ status: V2NIMLoginStatus)
+}
+@objc public protocol AIUserAgentProvider : ObjectiveC.NSObjectProtocol {
+  @objc func getAISearchUser(_ users: [V2NIMAIUser]) -> V2NIMAIUser?
+  @objc func getAITranslateUser(_ users: [V2NIMAIUser]) -> V2NIMAIUser?
+  @objc optional func getAITranslateLangs(_ users: [V2NIMAIUser]) -> [Swift.String]
+}
+@objc public protocol AIUserChangeListener : ObjectiveC.NSObjectProtocol {
+  @objc func onAIUserChanged(aiUsers: [V2NIMAIUser])
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class NEAIUserManager : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.NEAIUserManager
+  @objc open func addAIUserChangeListener(listener: any NEChatKit.AIUserChangeListener)
+  @objc open func removeAIUserChangeListener(listener: any NEChatKit.AIUserChangeListener)
+  @objc open func setProvider(provider: any NEChatKit.AIUserAgentProvider)
+  @objc open func isAIUserListEmpty() -> Swift.Bool
+  @objc open func getAIUserList()
+  @objc open func getAIUserById(_ accountId: Swift.String) -> V2NIMAIUser?
+  @objc open func getNEUserById(_ accountId: Swift.String) -> NECoreIM2Kit.NEUserWithFriend?
+  @objc open func getAIChatUserList() -> [V2NIMAIUser]
+  @objc open func isAIChatUser(account: Swift.String) -> Swift.Bool
+  @objc open func getAllAIUsers() -> [V2NIMAIUser]
+  @objc open func isAIUser(_ account: Swift.String) -> Swift.Bool
+  @objc open func getPinDefaultUserList() -> [V2NIMAIUser]
+  @objc open func isPinDefault(_ aiUser: V2NIMAIUser) -> Swift.Bool
+  @objc open func getWelcomeText(_ userId: Swift.String) -> Swift.String?
+  @objc open func getAISearchUser() -> V2NIMAIUser?
+  @objc open func getAITranslateUser() -> V2NIMAIUser?
+  @objc open func getAITranslateLanguages() -> [Swift.String]
+  @objc open func getTranslatePromptKey() -> Swift.String
+  @objc open func getTranslateTemperature() -> CoreFoundation.CGFloat
+  @objc open func getShowName(_ accountId: Swift.String) -> Swift.String?
+  @objc deinit
+}
+extension NEChatKit.NEAIUserManager : NECoreIM2Kit.NEIMKitClientListener {
+  @objc dynamic open func onDataSync(_ type: V2NIMDataSyncType, state: V2NIMDataSyncState, error: V2NIMError?)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class NEAIUserModel : ObjectiveC.NSObject {
+  @objc public var aiUser: V2NIMAIUser?
+  @objc public var customType: Swift.Int
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol AIUserPinListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func userInfoDidChange()
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers open class NEAIUserPinManager : ObjectiveC.NSObject, NEChatKit.NEContactListener, NECoreIM2Kit.NEIMKitClientListener {
+  @objc public static let shared: NEChatKit.NEAIUserPinManager
+  @objc public var currentUser: V2NIMUser?
+  @objc public var contactRepo: NEChatKit.ContactRepo
+  @objc public var aiUserRecordDic: [Swift.String : V2NIMUser]
+  @objc open func addPinManagerListener(_ listener: any NEChatKit.AIUserPinListener)
+  @objc open func removePinManagerListener(_ listener: any NEChatKit.AIUserPinListener)
+  @objc open func onUserProfileChanged(_ users: [V2NIMUser])
+  @objc open func checkoutUnPinAIUser(_ checkUser: V2NIMUser) -> Swift.Bool
+  @objc open func saveChangeUnpinInfo(_ serverExtension: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func unpinAIUser(_ accountId: Swift.String, _ completion: @escaping (Foundation.NSError?, Swift.Bool) -> Swift.Void)
+  @objc open func pinAIUser(_ accountId: Swift.String, _ completion: @escaping (Foundation.NSError?, Swift.Bool) -> Swift.Void)
+  @objc open func checkoutPinEnable(_ accountId: Swift.String) -> V2NIMUser?
+  @objc deinit
+}
+extension NEChatKit.NEAIUserPinManager : NEChatKit.AIUserChangeListener {
+  @objc dynamic open func onAIUserChanged(aiUsers: [V2NIMAIUser])
+}
+extension NEChatKit.NEAIUserPinManager {
+  @objc dynamic public func onLoginStatus(_ status: V2NIMLoginStatus)
+}
+@objc public protocol NEChatEmojProtocol : ObjectiveC.NSObjectProtocol {
+  @objc optional func getEmojAttributeString(_ content: Swift.String, _ font: CoreFoundation.CGFloat, _ color: UIKit.UIColor) -> Foundation.NSAttributedString?
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class NEChatKitClient : ObjectiveC.NSObject {
+  @objc public static let instance: NEChatKit.NEChatKitClient
+  @objc weak public var delegate: (any NEChatKit.NEChatMapProtocol)?
+  @objc weak public var emojDelegate: (any NEChatKit.NEChatEmojProtocol)?
+  @objc open func addMapDelegate(_ delegate: any NEChatKit.NEChatMapProtocol)
+  @objc open func removeMapDelegate(_ delegate: any NEChatKit.NEChatMapProtocol)
+  @objc open func addEmojDelegate(_ delegate: any NEChatKit.NEChatEmojProtocol)
+  @objc open func removeEmojDelegate()
+  @objc open func getEmojString(_ content: Swift.String, _ fontSize: CoreFoundation.CGFloat, _ color: UIKit.UIColor) -> Foundation.NSAttributedString?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum NEMapType : Swift.Int {
+  case detail = 0
+  case search
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol NEChatMapProtocol : ObjectiveC.NSObjectProtocol {
+  @objc optional func setupMapSdkConfig()
+  @objc optional func setupMapController(mapType: Swift.Int)
+  @objc optional func getMapView() -> Swift.AnyObject?
+  @objc optional func getCellMapView() -> Swift.AnyObject?
+  @objc optional func getCurrentPosition(mapview: Swift.AnyObject?) -> Swift.AnyObject?
+  @objc optional func searchPosition(key: Swift.String, completion: NEChatKit.NESearchPositionCompletion?)
+  @objc optional func searchRoundPosition(completion: NEChatKit.NESearchPositionCompletion?)
+  @objc optional func searchMapCenter(mapview: Swift.AnyObject, completion: NEChatKit.NESearchPositionCompletion?)
+  @objc optional func didmoveMap(completion: NEChatKit.NEMapviewDidMoveCompletion?)
+  @objc optional func setMapCenter(mapview: Swift.AnyObject?)
+  @objc optional func releaseSource()
+  @objc optional func startUpdatingLocation()
+  @objc optional func stopSerialLocation()
+  @objc optional func setMapviewLocation(lat: Swift.Double, lng: Swift.Double, mapview: Swift.AnyObject)
+  @objc optional func setCustomAnnotation(image: UIKit.UIImage?, lat: Swift.Double, lng: Swift.Double)
+  @objc optional func getMapImageUrl(lat: Swift.Double, lng: Swift.Double) -> Swift.String
+}
+public typealias NESearchPositionCompletion = @convention(block) ([NEChatKit.ChatLocaitonModel], (any Swift.Error)?) -> Swift.Void
+public typealias NEMapviewDidMoveCompletion = () -> Swift.Void
+public typealias NEPositionSelectCompletion = (NEChatKit.ChatLocaitonModel) -> Swift.Void
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NEFriendUserCache : ObjectiveC.NSObject {
+  public static let shared: NEChatKit.NEFriendUserCache
+  public var blockAccountSet: Swift.Set<Swift.String>? {
+    get
+    set
+  }
+  public var friendCache: [Swift.String : NECoreIM2Kit.NEUserWithFriend]? {
+    get
+    set
+  }
+  @objc deinit
+  open func isEmpty() -> Swift.Bool
+  open func isFriend(_ accountId: Swift.String) -> Swift.Bool
+  open func updateFriendInfo(_ user: V2NIMUser?)
+  open func updateFriendInfo(_ friend: V2NIMFriend?)
+  open func updateFriendInfo(_ friendUser: NECoreIM2Kit.NEUserWithFriend?)
+  open func initFriendCacheWithList(_ friendUsers: [NECoreIM2Kit.NEUserWithFriend]?)
+  open func getFriendList() -> [Swift.String : NECoreIM2Kit.NEUserWithFriend]
+  open func getFriendListNotInBlocklist() -> [Swift.String : NECoreIM2Kit.NEUserWithFriend]
+  open func getBlocklist() -> [Swift.String]?
+  open func getFriendInfo(_ accountId: Swift.String) -> NECoreIM2Kit.NEUserWithFriend?
+  open func removeFriendInfo(_ accountId: Swift.String)
+  open func removeAllFriendInfo()
+  open func initBlockAccountSet(_ blockList: [Swift.String])
+  open func isBlockListInit() -> Swift.Bool
+  open func isBlockAccount(_ accountId: Swift.String) -> Swift.Bool
+  open func addBlockAccount(_ accountId: Swift.String)
+  open func removeBlockAccount(_ accountId: Swift.String)
+  open func getShowName(_ userId: Swift.String, _ showAlias: Swift.Bool = true) -> Swift.String
+  open func loadShowName(_ userIds: [Swift.String], _ showAlias: Swift.Bool = true, _ completion: @escaping ([NECoreIM2Kit.NEUserWithFriend]?) -> Swift.Void)
+  public static func getShortName(_ name: Swift.String, _ length: Swift.Int = 2) -> Swift.String
+  public static func getCutName(_ name: Swift.String, _ length: Swift.Int = 7) -> Swift.String
+}
+extension NEChatKit.NEFriendUserCache : NECoreIM2Kit.NEIMKitClientListener {
+  @objc dynamic open func onLoginStatus(_ status: V2NIMLoginStatus)
+  @objc dynamic open func onKickedOffline(_ detail: V2NIMKickedOfflineDetail)
+}
+public let chatImageCountLimit: Swift.Int
+public let chatVideoCountLimit: Swift.Int
+public let avatarImageCountLimit: Swift.Int
+@objc public enum NEMediaType : Swift.Int {
+  case image = 1
+  case video
+  case all
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @objcMembers public class NEResultModel : ObjectiveC.NSObject {
+  @objc final public let asset: Photos.PHAsset
+  @objc final public let image: UIKit.UIImage
+  @objc final public let index: Swift.Int
+  @objc public init(asset: Photos.PHAsset, image: UIKit.UIImage, index: Swift.Int)
+  @objc deinit
+}
+extension NEChatKit.NEResultModel {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers open class NESubscribeManager : ObjectiveC.NSObject, NEChatKit.NESubscribeListener {
+  @objc public static let shared: NEChatKit.NESubscribeManager
+  @objc public var cacheDic: [Swift.String : V2NIMUserStatus]
+  @objc open func getSubscribeStatus(_ accountId: Swift.String) -> V2NIMUserStatus?
+  @objc open func hasSubscribe(_ accountId: Swift.String) -> Swift.Bool
+  @objc open func outOfLimit() -> Swift.Bool
+  @objc public func cleanCache()
+  @objc open func subscribeUsersOnlineState(_ accounts: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func unSubscribeUsersOnlineState(_ accounts: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func filterSubscribedUsers(_ accounts: [Swift.String], _ completion: @escaping ([Swift.String]) -> Swift.Void)
+  @objc open func addAccidsToCache(_ accids: [Swift.String])
+  @objc open func deleteAccidsFromCache(_ accids: [Swift.String])
+  @objc public func onUserStatusChanged(_ data: [V2NIMUserStatus])
+  @objc deinit
+}
+extension NEChatKit.NESubscribeManager : NECoreIM2Kit.NEIMKitClientListener {
+  @objc dynamic open func onConnectStatus(_ status: V2NIMConnectStatus)
+  @objc dynamic open func onLoginStatus(_ status: V2NIMLoginStatus)
+  @objc dynamic open func onKickedOffline(_ detail: V2NIMKickedOfflineDetail)
+}
+@objc public enum OperationType : Swift.Int {
+  case copy = 1
+  case reply
+  case forward
+  case pin
+  case removePin
+  case multiSelect
+  case collection
+  case delete
+  case recall
+  case top
+  case untop
+  case plugin
+  case voiceToText
+  case earpiece
+  case speaker
+  case searchTeamMember
+  case searchImage
+  case searchVideo
+  case searchDate
+  case searchFile
+  case translate
+  case hideTranslation
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class OperationItem : ObjectiveC.NSObject {
+  @objc public var text: Swift.String
+  @objc public var imageName: Swift.String
+  public var type: NEChatKit.OperationType?
+  @objc public var image: UIKit.UIImage?
+  @objc public var onClick: ((UIKit.UIViewController?) -> Swift.Void)?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class ResourceRepo : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.ResourceRepo
+  @objc final public let storageProvider: NECoreIM2Kit.StorageProvider
+  @objc open func createUploadFileTask(_ filePath: Swift.String, _ sceneName: Swift.String? = nil) -> V2NIMUploadFileTask
+  @objc open func uploadFile(_ fileTask: V2NIMUploadFileTask, _ progress: ((Swift.Float) -> Swift.Void)?, _ completion: ((Swift.String?, Foundation.NSError?) -> Swift.Void)?)
+  @objc open func cancelTask(_ fileTask: V2NIMUploadFileTask, _ completion: ((Foundation.NSError?) -> Swift.Void)?)
+  @objc open func downLoadFile(_ urlString: Swift.String, _ filePath: Swift.String, _ progress: ((Swift.UInt) -> Swift.Void)?, _ completion: ((Swift.String?, Foundation.NSError?) -> Swift.Void)?)
+  @objc open func shortUrlToLong(url: Swift.String, _ completion: @escaping ((any Swift.Error)?, Swift.String?) -> Swift.Void)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SettingRepo : ObjectiveC.NSObject {
+  @objc public static let shared: NEChatKit.SettingRepo
+  @objc final public let settingProvider: NECoreIM2Kit.SettingProvider
+  @objc open func getHandsetMode() -> Swift.Bool
+  @objc open func setHandsetMode(_ value: Swift.Bool)
+  @objc open func getShowReadStatus() -> Swift.Bool
+  @objc open func setShowReadStatus(_ value: Swift.Bool)
+  @objc open func addSettingListener(_ listener: any V2NIMSettingListener)
+  @objc open func removeSettingListener(_ listener: any V2NIMSettingListener)
+  @objc open func getConversationMuteStatus(conversationId: Swift.String) -> Swift.Bool
+  @objc open func setTeamMessageMuteMode(teamId: Swift.String, teamType: V2NIMTeamType, muteMode: V2NIMTeamMessageMuteMode, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMessageMuteMode(teamId: Swift.String, teamType: V2NIMTeamType) -> V2NIMTeamMessageMuteMode
+  @objc open func setP2PMessageMuteMode(accountId: Swift.String, muteMode: V2NIMP2PMessageMuteMode, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getP2PMessageMuteMode(accountId: Swift.String) -> V2NIMP2PMessageMuteMode
+  @objc open func getP2PMessageMuteList(_ completion: @escaping ([Swift.String]?) -> Swift.Void)
+  @objc open func setPushMobileOnDesktopOnline(need: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func setDndConfig(config: V2NIMDndConfig, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func setMessageNotify(_ value: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func setPushShowDetail(_ value: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getPushEnable() -> Swift.Bool
+  @objc open func setPushEnable(_ open: Swift.Bool)
+  @objc open func getPushDetailEnable() -> Swift.Bool
+  @objc open func setMessagePushConfig(_ messagePushConfig: V2NIMMessagePushConfig)
+  @objc open func getMessagePushConfig() -> V2NIMMessagePushConfig?
+  @objc open func getRecentForward() -> [Swift.String]?
+  @objc open func updateRecentForward(_ recentList: [Swift.String])
+  @objc open func getNodeValue() -> Swift.Bool
+  @objc open func setNodeValue(_ value: Swift.Bool)
+  @objc deinit
+}
+extension NEChatKit.SettingRepo : NECoreIM2Kit.NEIMKitClientListener {
+  @objc dynamic open func onLoginStatus(_ status: V2NIMLoginStatus)
+}
+@objc public protocol NESubscribeListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onUserStatusChanged(_ data: [V2NIMUserStatus])
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SubscribeRepo : ObjectiveC.NSObject, V2NIMSubscribeListener {
+  @objc public static let shared: NEChatKit.SubscribeRepo
+  @objc open func addListener(_ listener: any NEChatKit.NESubscribeListener)
+  @objc open func removeListener(_ listener: any NEChatKit.NESubscribeListener)
+  open func publishCustomUserStatus(_ statusType: Swift.Int32, _ duration: Swift.Int?, _ multiSync: Swift.Bool = true, _ onlineOnly: Swift.Bool = true, _ completion: @escaping (V2NIMCustomUserStatusPublishResult?, Foundation.NSError?) -> Swift.Void)
+  open func subscribeUserStatus(_ accountIds: [Swift.String], _ duration: Swift.Int?, _ immediateSync: Swift.Bool = false, _ completion: @escaping ([Swift.String]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func unsubscribeUserStatus(_ accountIds: [Swift.String], _ completion: @escaping ([Swift.String]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func queryUserStatusSubscriptions(_ accountIds: [Swift.String], _ completion: @escaping ([V2NIMUserStatusSubscribeResult]?, Foundation.NSError?) -> Swift.Void)
+  @objc public func onUserStatusChanged(_ data: [V2NIMUserStatus])
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class NETeamInfoModel : ObjectiveC.NSObject {
+  @objc public var team: V2NIMTeam?
+  @objc public var users: [NEChatKit.NETeamMemberInfoModel]
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias NESelectTeamMemberBlock = ([NEChatKit.NETeamMemberInfoModel]) -> Swift.Void
+@objc @_inheritsConvenienceInitializers @objcMembers public class NETeamMemberInfoModel : ObjectiveC.NSObject {
+  @objc public var nimUser: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var teamMember: V2NIMTeamMember?
+  @objc open func showNickInTeam() -> Swift.String?
+  @objc open func showNameInTeam() -> Swift.String?
+  @objc open func atNameInTeam() -> Swift.String?
+  @objc open func getShortName(_ name: Swift.String, _ length: Swift.Int = 2) -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol NETeamListener : ObjectiveC.NSObjectProtocol {
+  @objc optional func onTeamSyncStarted()
+  @objc optional func onTeamSyncFinished()
+  @objc optional func onTeamSyncFailed(_ error: V2NIMError)
+  @objc optional func onTeamCreated(_ team: V2NIMTeam)
+  @objc optional func onTeamDismissed(_ team: V2NIMTeam)
+  @objc optional func onTeamJoined(_ team: V2NIMTeam)
+  @objc optional func onTeamLeft(_ team: V2NIMTeam, isKicked: Swift.Bool)
+  @objc optional func onTeamInfoUpdated(_ team: V2NIMTeam)
+  @objc optional func onTeamMemberJoined(_ teamMembers: [V2NIMTeamMember])
+  @objc optional func onTeamMemberKicked(_ operatorAccountId: Swift.String, teamMembers: [V2NIMTeamMember])
+  @objc optional func onTeamMemberLeft(_ teamMembers: [V2NIMTeamMember])
+  @objc optional func onTeamMemberInfoUpdated(_ teamMembers: [V2NIMTeamMember])
+  @objc optional func onReceive(_ joinActionInfo: V2NIMTeamJoinActionInfo)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class TeamRepo : ObjectiveC.NSObject, V2NIMTeamListener {
+  @objc public static let shared: NEChatKit.TeamRepo
+  @objc final public let teamProvider: NECoreIM2Kit.TeamProvider
+  @objc final public let chatProvider: NECoreIM2Kit.ChatProvider
+  @objc final public let userProvider: NECoreIM2Kit.UserProvider
+  @objc open func addTeamListener(_ listener: any NEChatKit.NETeamListener)
+  @objc open func removeTeamListener(_ listener: any NEChatKit.NETeamListener)
+  @objc open func createTeam(_ params: V2NIMCreateTeamParams, _ members: [Swift.String], _ postscript: Swift.String?, _ antispamConfig: V2NIMAntispamConfig?, _ completion: @escaping (V2NIMCreateTeamResult?, (any Swift.Error)?) -> Swift.Void)
+  @objc open func updateTeamIcon(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ url: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func updateTeamIntroduce(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ introduce: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func updateTeamName(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ name: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func updateMemberNick(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ accId: Swift.String, _ nickName: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  open func updateTeamExtension(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ ext: Swift.String, _ mode: V2NIMTeamUpdateExtensionMode? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func dismissTeam(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func leaveTeam(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamList(_ completion: @escaping ([NECoreIM2Kit.NETeam]?, (any Swift.Error)?) -> Swift.Void)
+  @objc open func getTeamMember(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ accId: Swift.String, _ completion: @escaping (V2NIMTeamMember?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMemberListByIds(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ accIds: [Swift.String], _ completion: @escaping ([V2NIMTeamMember]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMemberList(_ teamId: Swift.String, _ teamType: V2NIMTeamType, _ queryOption: V2NIMTeamMemberQueryOption, _ completion: @escaping (V2NIMTeamMemberListResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func addManagers(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ members: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func removeManagers(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ members: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func removeTeamMembers(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ members: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamInfo(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ completion: @escaping (V2NIMTeam?, Foundation.NSError?) -> Swift.Void)
+  @objc open func applyJoinTeam(teamId: Swift.String, teamType: V2NIMTeamType, postscript: Swift.String?, _ completion: @escaping (V2NIMTeam?, Foundation.NSError?) -> Swift.Void)
+  @objc open func inviteTeamMembers(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ members: [Swift.String], _ completion: @escaping (Foundation.NSError?, [V2NIMTeamMember]?) -> Swift.Void)
+  @objc open func updateInviteMode(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ mode: V2NIMTeamInviteMode, _ completion: @escaping (Foundation.NSError?, V2NIMTeam?) -> Swift.Void)
+  @objc open func updateTeamInfoMode(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ mode: V2NIMTeamUpdateInfoMode, _ completion: @escaping (Foundation.NSError?, V2NIMTeam?) -> Swift.Void)
+  @objc open func updateTeamJoinMode(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ mode: V2NIMTeamJoinMode, _ completion: @escaping (Foundation.NSError?, V2NIMTeam?) -> Swift.Void)
+  @objc open func updateTeamAgreeMode(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ mode: V2NIMTeamAgreeMode, _ completion: @escaping (Foundation.NSError?, V2NIMTeam?) -> Swift.Void)
+  @objc open func transferTeam(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ account: Swift.String, _ quit: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamListByIds(teamIds: [Swift.String], teamType: V2NIMTeamType, _ completion: @escaping ([V2NIMTeam]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func setTeamMuteStatus(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ muteMode: V2NIMTeamMessageMuteMode, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMuteStatus(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL) -> V2NIMTeamMessageMuteMode
+  @objc open func setTeamChatBannedMode(_ teamId: Swift.String, _ teamType: V2NIMTeamType = .TEAM_TYPE_NORMAL, _ chatBannedMode: V2NIMTeamChatBannedMode, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamJoinActionInfoList(_ option: V2NIMTeamJoinActionInfoQueryOption, _ completion: @escaping (V2NIMTeamJoinActionInfoResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func clearAllTeamJoinActionInfo(_ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func acceptInvitation(invitationInfo: V2NIMTeamJoinActionInfo, _ completion: @escaping (V2NIMTeam?, Foundation.NSError?) -> Swift.Void)
+  @objc open func rejectInvitation(invitationInfo: V2NIMTeamJoinActionInfo, postscript: Swift.String?, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func acceptJoinApplication(_ applicationInfo: V2NIMTeamJoinActionInfo, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func rejectJoinApplication(_ applicationInfo: V2NIMTeamJoinActionInfo, _ postscript: Swift.String?, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  open func getTeamInfoLocal(teamId: Swift.String, teamType: V2NIMTeamType, error: inout Foundation.NSError?) -> V2NIMTeam?
+  open func getTeamInfoByIdsLocal(teamIds: [Swift.String], teamType: V2NIMTeamType, error: inout Foundation.NSError?) -> [V2NIMTeam]?
+  open func getOwnerTeamList(teamTypes: [Foundation.NSNumber], error: inout Foundation.NSError?) -> [V2NIMTeam]?
+  @objc open func getTeamInfoFromCloud(teamId: Swift.String, teamType: V2NIMTeamType, _ completion: @escaping (V2NIMTeam?, Foundation.NSError?) -> Swift.Void)
+  @objc open func inviteMemberEx(teamId: Swift.String, teamType: V2NIMTeamType, params: V2NIMTeamInviteParams, _ completion: @escaping ([Swift.String]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func updateTeamMemberNickEx(teamId: Swift.String, teamType: V2NIMTeamType, accountId: Swift.String, params: V2NIMUpdateMemberNickParams, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func setTeamJoinActionInfoRead(applicationInfo: V2NIMTeamJoinActionInfo?, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamJoinActionInfoUnreadCount(_ completion: @escaping (Swift.Int, Foundation.NSError?) -> Swift.Void)
+  @objc open func getManagerTeamList(teamTypes: [Foundation.NSNumber], _ completion: @escaping ([V2NIMTeam]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getJoinedTeamMembers(teamTypes: [Foundation.NSNumber]?, _ completion: @escaping ([V2NIMTeamMember]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamMemberInvitor(teamId: Swift.String, teamType: V2NIMTeamType, accountIds: [Swift.String], _ completion: @escaping ([Swift.String : Swift.String]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchTeamByKeyword(keyword: Swift.String, _ completion: @escaping ([V2NIMTeam]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchTeamMembers(option: V2NIMTeamMemberSearchOption, _ completion: @escaping (V2NIMTeamMemberSearchResult?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchTeams(params: V2NIMTeamSearchParams, _ completion: @escaping ([V2NIMTeam]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func searchTeamMembersEx(params: V2NIMSearchTeamMemberParams, _ completion: @escaping ([V2NIMTeamRefer : [V2NIMTeamMember]]?, Foundation.NSError?) -> Swift.Void)
+  @objc open func addTeamMembersFollow(teamId: Swift.String, teamType: V2NIMTeamType, accountIds: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func removeTeamMembersFollow(teamId: Swift.String, teamType: V2NIMTeamType, accountIds: [Swift.String], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func clearAllTeamJoinActionInfoEx(option: V2NIMTeamClearJoinActionInfoOption, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func deleteTeamJoinActionInfo(applicationInfo: V2NIMTeamJoinActionInfo, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func onSyncStarted()
+  @objc open func onSyncFinished()
+  @objc open func onSyncFailed(_ error: V2NIMError)
+  @objc open func onTeamCreated(_ team: V2NIMTeam)
+  @objc open func onTeamDismissed(_ team: V2NIMTeam)
+  @objc open func onTeamJoined(_ team: V2NIMTeam)
+  @objc open func onTeamLeft(_ team: V2NIMTeam, isKicked: Swift.Bool)
+  @objc open func onTeamInfoUpdated(_ team: V2NIMTeam)
+  @objc open func onTeamMemberJoined(_ teamMembers: [V2NIMTeamMember])
+  @objc open func onTeamMemberKicked(_ operatorAccountId: Swift.String, teamMembers: [V2NIMTeamMember])
+  @objc open func onTeamMemberLeft(_ teamMembers: [V2NIMTeamMember])
+  @objc open func onTeamMemberInfoUpdated(_ teamMembers: [V2NIMTeamMember])
+  @objc open func onReceive(_ joinActionInfo: V2NIMTeamJoinActionInfo)
+  @objc deinit
+}
+@objc @objcMembers public class TranslationInfo : ObjectiveC.NSObject {
+  @objc public var targetLanguage: Swift.String
+  @objc public var translatedText: Swift.String
+  @objc public var createTime: Swift.Double
+  @objc public init(targetLanguage: Swift.String, translatedText: Swift.String, createTime: Foundation.TimeInterval = Date().timeIntervalSince1970 * 1000)
+  @objc public static func parse(from localExtension: Swift.String?) -> NEChatKit.TranslationInfo?
+  @objc public func merged(into localExtension: Swift.String?) -> Swift.String
+  @objc public static func cleared(from localExtension: Swift.String?) -> Swift.String?
+  @objc deinit
+}
+extension NEChatKit.NEContactChangeType : Swift.Equatable {}
+extension NEChatKit.NEContactChangeType : Swift.Hashable {}
+extension NEChatKit.NEContactChangeType : Swift.RawRepresentable {}
+extension NEChatKit.MessageType : Swift.Equatable {}
+extension NEChatKit.MessageType : Swift.Hashable {}
+extension NEChatKit.MessageType : Swift.RawRepresentable {}
+extension NEChatKit.NEMapType : Swift.Equatable {}
+extension NEChatKit.NEMapType : Swift.Hashable {}
+extension NEChatKit.NEMapType : Swift.RawRepresentable {}
+extension NEChatKit.NEMediaType : Swift.Equatable {}
+extension NEChatKit.NEMediaType : Swift.Hashable {}
+extension NEChatKit.NEMediaType : Swift.RawRepresentable {}
+extension NEChatKit.OperationType : Swift.Equatable {}
+extension NEChatKit.OperationType : Swift.Hashable {}
+extension NEChatKit.OperationType : Swift.RawRepresentable {}

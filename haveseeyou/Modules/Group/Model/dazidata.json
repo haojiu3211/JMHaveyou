@@ -1,0 +1,35 @@
+{
+  "code": 0,
+  "message": "获取成功",
+  "time": "1783334072",
+  "data": {
+    "total": "35",
+    "page": 3,
+    "total_page": 99,
+    "list": [
+      {
+        "user_id": 8999202,
+        "nickname": "Wyuwuwuw",
+        "usercode": "33769308",
+        "gender": 1,
+        "age": 26,
+        "arrange_play_city_label": "苏州市",
+        "height": 0,
+        "avatar": "uploads/avatar/8999202/2026-07-03ihmbXnGEYHoP.jpg?x-oss-process=image/resize,w_501,h_600",
+        "city": 0,
+        "occupation": "",
+        "wechat_account": "Qu****suw",
+        "updatetime": 1783043229,
+        "city_name": "苏州市",
+        "active_time": "3 天前",
+        "album_data": [],
+        "album_number": 0,
+        "extra": {
+          "initial_heart": "满足兴趣爱好",
+          "activity": "高尔夫",
+          "interested": null
+        }
+      }
+    ]
+  }
+}

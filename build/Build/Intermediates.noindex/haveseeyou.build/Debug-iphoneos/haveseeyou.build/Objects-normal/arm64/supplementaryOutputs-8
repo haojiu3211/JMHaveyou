@@ -1,0 +1,51 @@
+{
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/AppDelegate.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/AppDelegate.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/AppDelegate.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Network/APITarget.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/APITarget.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/APITarget.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/APITarget.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/APITarget.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/APITarget.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Network/NetworkManager.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/NetworkManager.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/NetworkManager.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/NetworkManager.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/NetworkManager.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/NetworkManager.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Network/SystemInitAPI.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitAPI.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitAPI.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitAPI.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitAPI.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitAPI.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/Network/SystemInitModel.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitModel.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitModel.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitModel.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitModel.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SystemInitModel.swiftdeps"
+  },
+  "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/haveseeyou/SceneDelegate.swift" : {
+    "const-values" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SceneDelegate.swiftconstvalues",
+    "dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SceneDelegate.d",
+    "diagnostics" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SceneDelegate.dia",
+    "object" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SceneDelegate.o",
+    "swift-dependencies" : "/Users/wangtingforlove/Desktop/seeyou/OC/haveseeyou/build/Build/Intermediates.noindex/haveseeyou.build/Debug-iphoneos/haveseeyou.build/Objects-normal/arm64/SceneDelegate.swiftdeps"
+  }
+}
