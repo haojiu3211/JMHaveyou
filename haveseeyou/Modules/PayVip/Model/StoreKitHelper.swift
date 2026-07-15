@@ -93,7 +93,6 @@ class StoreKitHelper: NSObject {
     private var isPurchasing = false
     private var isSilentRestore = false
     private var purchasingProductId: String? // 当前正在购买的产品ID
-    private var purchaseTimeoutTimer: Timer? // 购买超时计时器
     private var pendingTransactions: [String: SKPaymentTransaction] = [:] // 缓存待验证的交易
     
     private override init() {
@@ -103,8 +102,6 @@ class StoreKitHelper: NSObject {
     
     // MARK: - 重置购买状态
     private func resetPurchaseState() {
-        purchaseTimeoutTimer?.invalidate()
-        purchaseTimeoutTimer = nil
         isPurchasing = false
         purchasingProductId = nil
     }
@@ -112,8 +109,6 @@ class StoreKitHelper: NSObject {
     // MARK: - 强制重置所有状态（包括清理 pendingTransactions）
     func forceResetAllState() {
         print("🧹 [IAP] 强制重置所有状态")
-        purchaseTimeoutTimer?.invalidate()
-        purchaseTimeoutTimer = nil
         isPurchasing = false
         purchasingProductId = nil
         isSilentRestore = false
@@ -165,14 +160,6 @@ class StoreKitHelper: NSObject {
         
         isPurchasing = true
         purchasingProductId = productId // 记录当前正在购买的产品ID
-        
-        // 添加超时机制，30秒后自动重置状态（防止沙盒环境异常导致卡死）
-        purchaseTimeoutTimer?.invalidate()
-        purchaseTimeoutTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: false) { [weak self] _ in
-            guard let self = self else { return }
-            print("⚠️ [IAP] 购买超时，自动重置状态")
-            self.resetPurchaseState()
-        }
         
         let payment = SKPayment(product: product.product)
         SKPaymentQueue.default().add(payment)
@@ -330,10 +317,10 @@ extension StoreKitHelper: SKPaymentTransactionObserver {
         let productId = transaction.payment.productIdentifier
         
         // 检查是否正在处理这个交易（防止重复处理）
-        guard pendingTransactions[transactionId] == nil else {
-            print("⚠️ [IAP] 交易正在处理中，跳过: \(transactionId)")
-            return
-        }
+//        guard pendingTransactions[transactionId] == nil else {
+//            print("⚠️ [IAP] 交易正在处理中，跳过: \(transactionId)")
+//            return
+//        }
         
         // 提取两个交易 ID
         let originalTransactionId = transaction.original?.transactionIdentifier ?? transactionId
@@ -412,10 +399,10 @@ extension StoreKitHelper: SKPaymentTransactionObserver {
         let transactionId = transaction.transactionIdentifier ?? UUID().uuidString
         
         // 检查是否正在处理这个交易（防止重复处理）
-        guard pendingTransactions[transactionId] == nil else {
-            print("⚠️ [IAP] 恢复交易正在处理中，跳过: \(transactionId)")
-            return
-        }
+//        guard pendingTransactions[transactionId] == nil else {
+//            print("⚠️ [IAP] 恢复交易正在处理中，跳过: \(transactionId)")
+//            return
+//        }
         
         print("🔄 [IAP] 恢复购买: \(transaction.payment.productIdentifier)")
         

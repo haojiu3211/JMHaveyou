@@ -10,7 +10,7 @@ import SnapKit
 import StoreKit
 
 class MemberCenterViewController: BaseViewController {
-
+    
     /// 登录页隐藏系统导航栏
     override var prefersNavigationBarHidden: Bool { true }
     /// 不使用标准返回按钮（登录页为根页面，无需返回按钮）
@@ -24,10 +24,7 @@ class MemberCenterViewController: BaseViewController {
     // StoreKit 产品缓存
     private var iapProducts: [String: IAPProduct] = [:]
     
-    // 防止重复购买/恢复的标志位
-    private var isProcessingPurchase = false
-    
-    // 购买流程中保存的订单信息
+    // 当前正在处理的订单信息
     private var currentOrderNo: String?
     private var currentProductId: String?
     private var currentVipId: Int?
@@ -38,10 +35,9 @@ class MemberCenterViewController: BaseViewController {
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.showsVerticalScrollIndicator = false
-        sv.bounces = false
         return sv
     }()
-
+    
     // 自定义导航栏
     private lazy var memberNavView: MemberNavView = {
         let nav = MemberNavView()
@@ -49,19 +45,19 @@ class MemberCenterViewController: BaseViewController {
         return nav
     }()
     
-   // vip付费中心
+    // vip付费中心
     private lazy var menberCenterView: MenberCenterView = {
         let vipCenterView = MenberCenterView()
         vipCenterView.delegate = self
         return vipCenterView
     }()
     
-   // vip专属特权列表
+    // vip专属特权列表
     private lazy var memberBottomView: MemberBottom = {
         let vipBottomView = MemberBottom()
         return vipBottomView
     }()
-
+    
     // 模拟的内容容器（用来撑开 ScrollView）
     private let contentView: UIView = {
         let view = UIView()
@@ -118,16 +114,14 @@ class MemberCenterViewController: BaseViewController {
     @objc private func handleRestoreSuccess(_ notification: Notification) {
         print("✅ [MemberCenter] 收到恢复购买成功通知")
         hideLoading()
-        isProcessingPurchase = false
-        showToast("恢复购买成功！")
+        menberCenterView.setPaymentButtonEnabled(true)
         refreshUserInfo()
     }
     
     @objc private func handleRestoreFail(_ notification: Notification) {
         print("❌ [MemberCenter] 收到恢复购买失败通知")
         hideLoading()
-        isProcessingPurchase = false
-        showToast("恢复购买失败")
+        menberCenterView.setPaymentButtonEnabled(true)
     }
     
     @objc private func handleAuditConfigChange() {
@@ -211,7 +205,6 @@ class MemberCenterViewController: BaseViewController {
                 
             case .failure(let error):
                 print("❌ [MemberCenter] 请求失败: \(error.localizedDescription)")
-                self.showToast("请求失败: \(error.localizedDescription)")
             }
         }
     }
@@ -261,7 +254,9 @@ class MemberCenterViewController: BaseViewController {
             }
             
             // 重新获取内购产品
-            fetchStoreKitProducts()
+            if !productIds.isEmpty {
+                fetchStoreKitProducts()
+            }
         }
     }
     
@@ -286,42 +281,36 @@ extension MemberCenterViewController: MemberNavViewDelegate {
 // MARK: - MenberCenterViewDelegate
 extension MemberCenterViewController: MenberCenterViewDelegate {
     func memberViewDidClickUpgrade(_ view: MenberCenterView, selectedPlan: PlanItem) {
-        guard !isLoading && !isProcessingPurchase else { return }
+        // 时机1：用户点击支付按钮的瞬间
+        // 立即显示菊花，禁用按钮，发起支付
         
-        // 立即设置标志位，防止重复点击
-        isProcessingPurchase = true
+        guard let vipId = selectedPlan.vipId, let vipGoodsId = selectedPlan.vipGoodsId else {
+            return
+        }
         
         // 检查是否已是会员
         if let vipInfo = currentUserVipInfo, vipInfo.vip == 1 {
-            isProcessingPurchase = false
-            if let expireTime = vipInfo.expireTime {
-                showToast("您已是会员，\(expireTime)")
-            } else {
-                showToast("您已是会员，无需再次购买")
-            }
+            showToast("您已是会员，无需再购买")
             return
         }
         
         guard view.isAgreed else {
-            isProcessingPurchase = false
-            showToast("请先同意协议")
             return
         }
         
-        guard let vipId = selectedPlan.vipId, let vipGoodsId = selectedPlan.vipGoodsId else {
-            isProcessingPurchase = false
-            showToast("产品信息不完整")
-            return
-        }
+        guard !isLoading else { return }
         
-        // 第一步：先请求创建 VIP 订单
+        // 立即显示菊花
+        showLoading()
+        // 禁用支付按钮
+        menberCenterView.setPaymentButtonEnabled(false)
+        
+        // 先创建订单
         createVipOrder(vipId: "\(vipId)", vipGoodsId: vipGoodsId, productId: selectedPlan.productId)
     }
     
     // MARK: - 创建 VIP 订单
     private func createVipOrder(vipId: String, vipGoodsId: String, productId: String) {
-        showLoading("获取订单中...")
-        
         NetworkManager.shared.request(
             PurchaseAPI.createVipOrder(id: vipId, vipGoodsId: vipGoodsId, type: "none"),
             as: CreateVipOrderData.self
@@ -330,8 +319,6 @@ extension MemberCenterViewController: MenberCenterViewDelegate {
             
             switch result {
             case .success(let orderData):
-                self.hideLoading()
-                
                 if let orderNo = orderData.orderNo {
                     print("✅ [VIP] 获取订单成功: \(orderNo)")
                     
@@ -341,19 +328,18 @@ extension MemberCenterViewController: MenberCenterViewDelegate {
                     self.currentVipId = Int(vipId)
                     self.currentVipGoodsId = vipGoodsId
                     
-                    // 第二步：发起 Apple Pay 支付
+                    // 发起内购
                     print("🚀 [IAP] 发起购买: \(productId)")
                     StoreKitHelper.shared.purchaseProduct(productId: productId)
                 } else {
-                    self.isProcessingPurchase = false
-                    self.showToast("获取订单失败")
+                    self.hideLoading()
+                    self.menberCenterView.setPaymentButtonEnabled(true)
                 }
                 
             case .failure(let error):
                 self.hideLoading()
-                self.isProcessingPurchase = false
+                self.menberCenterView.setPaymentButtonEnabled(true)
                 print("❌ [VIP] 获取订单失败: \(error)")
-                self.showToast("获取订单失败")
             }
         }
     }
@@ -422,39 +408,31 @@ extension MemberCenterViewController: StoreKitHelperDelegate {
     
     func storeKitHelper(_ helper: StoreKitHelper, didFailFetchProductsWithError error: Error) {
         print("❌ [IAP] 获取产品失败: \(error)")
-        showToast("获取产品信息失败")
     }
     
     func storeKitHelper(_ helper: StoreKitHelper, didPurchaseProduct productId: String, receipt: String, transactionId: String) {
         print("✅ [IAP] 苹果支付成功，开始服务器验证")
         
-        // 苹果支付成功，先显示"支付处理中"的提示
-        showToast("支付处理中，请稍后查看")
+        // 时机2：收到支付成功回调
+        // 保持菊花显示状态
         
-        // 使用刚才获取的订单号进行验证
+        // 使用已有订单号验证，或者重新生成
         if let orderNo = currentOrderNo {
-            verifyApplePayPurchaseWithOrderNo(receipt: receipt, productId: productId, transactionId: transactionId, orderNo: orderNo)
+            verifyApplePayPurchaseWithOrderNo(receipt: receipt, productId: productId, transactionId: transactionId, originalTransactionId: transactionId, orderNo: orderNo)
         } else {
-            // 备用：重新生成订单号
-            verifyApplePayPurchase(receipt: receipt, productId: productId, transactionId: transactionId)
+            let orderNo = generateOrderNo()
+            verifyApplePayPurchase(receipt: receipt, productId: productId, transactionId: transactionId, originalTransactionId: transactionId, orderNo: orderNo)
         }
-        
-        // 清除保存的订单信息
-        currentOrderNo = nil
-        currentProductId = nil
-        currentVipId = nil
-        currentVipGoodsId = nil
     }
     
     // MARK: - 使用已有订单号验证 Apple Pay 购买
-    private func verifyApplePayPurchaseWithOrderNo(receipt: String, productId: String, transactionId: String, orderNo: String) {
-        showLoading("确认订单中...")
+    private func verifyApplePayPurchaseWithOrderNo(receipt: String, productId: String, transactionId: String, originalTransactionId: String, orderNo: String) {
         NetworkManager.shared.request(
             PurchaseAPI.applePayVerification(
-                receipt: receipt, 
-                productId: productId, 
+                receipt: receipt,
+                productId: productId,
                 transactionId: transactionId,
-                originalTransactionId: transactionId,
+                originalTransactionId: originalTransactionId,
                 orderNo: orderNo,
                 isRestore: false,
                 scene: "vip"
@@ -462,37 +440,45 @@ extension MemberCenterViewController: StoreKitHelperDelegate {
             as: VerifyPurchaseResponse.self
         ) { [weak self] result in
             guard let self = self else { return }
-            self.hideLoading()
-            self.isProcessingPurchase = false
             
             switch result {
             case .success(let response):
                 print("✅ [Apple Pay] 购买验证成功, orderNo: \(response.orderNo ?? "unknown")")
                 // 服务器验证成功后，完成交易
                 StoreKitHelper.shared.finishTransaction(transactionId: transactionId)
-                self.showToast("购买成功！")
+                // 隐藏菊花
+                self.hideLoading()
+                // 恢复按钮
+                self.menberCenterView.setPaymentButtonEnabled(true)
                 self.refreshUserInfo()
+                // 清理保存的订单信息
+                self.currentOrderNo = nil
+                self.currentProductId = nil
+                self.currentVipId = nil
+                self.currentVipGoodsId = nil
                 
             case .failure(let error):
                 print("❌ [Apple Pay] 验证购买失败: \(error)")
-                self.showToast("支付处理中，请稍后查看")
-                // ⚠️ 注意：验证失败时不要 finishTransaction，让交易留在队列中，下次启动时会再次回调
+                // 验证失败隐藏菊花，恢复按钮
+                self.hideLoading()
+                self.menberCenterView.setPaymentButtonEnabled(true)
+                // 清理保存的订单信息
+                self.currentOrderNo = nil
+                self.currentProductId = nil
+                self.currentVipId = nil
+                self.currentVipGoodsId = nil
             }
         }
     }
     
     // MARK: - Apple Pay 验证 (常规购买)
-    private func verifyApplePayPurchase(receipt: String, productId: String, transactionId: String) {
-        let orderNo = generateOrderNo()
-        print("🚀 [Apple Pay] 订单号: \(orderNo)")
-        
-        showLoading("确认订单中...")
+    private func verifyApplePayPurchase(receipt: String, productId: String, transactionId: String, originalTransactionId: String, orderNo: String) {
         NetworkManager.shared.request(
             PurchaseAPI.applePayVerification(
-                receipt: receipt, 
-                productId: productId, 
+                receipt: receipt,
+                productId: productId,
                 transactionId: transactionId,
-                originalTransactionId: transactionId,
+                originalTransactionId: originalTransactionId,
                 orderNo: orderNo,
                 isRestore: false,
                 scene: "vip"
@@ -500,33 +486,48 @@ extension MemberCenterViewController: StoreKitHelperDelegate {
             as: VerifyPurchaseResponse.self
         ) { [weak self] result in
             guard let self = self else { return }
-            self.hideLoading()
-            self.isProcessingPurchase = false
             
             switch result {
             case .success(let response):
                 print("✅ [Apple Pay] 购买验证成功, orderNo: \(response.orderNo ?? "unknown")")
                 // 服务器验证成功后，完成交易
                 StoreKitHelper.shared.finishTransaction(transactionId: transactionId)
-                self.showToast("购买成功！")
+                self.hideLoading()
+                self.menberCenterView.setPaymentButtonEnabled(true)
                 self.refreshUserInfo()
                 
             case .failure(let error):
                 print("❌ [Apple Pay] 验证购买失败: \(error)")
-                self.showToast("支付处理中，请稍后查看")
-                // ⚠️ 注意：验证失败时不要 finishTransaction，让交易留在队列中，下次启动时会再次回调
+                self.hideLoading()
+                self.menberCenterView.setPaymentButtonEnabled(true)
             }
         }
     }
     
     func storeKitHelper(_ helper: StoreKitHelper, didFailPurchaseProductWithError error: Error) {
         print("❌ [IAP] 购买失败: \(error)")
-        isProcessingPurchase = false
         
+        // 时机3：收到用户取消回调
         if let nsError = error as NSError?, nsError.code == SKError.Code.paymentCancelled.rawValue {
-            showToast("已取消购买")
+            // 只有明确是用户取消才隐藏菊花
+            print("ℹ️ [IAP] 用户取消支付")
+            hideLoading()
+            menberCenterView.setPaymentButtonEnabled(true)
+            // 清理保存的订单信息
+            currentOrderNo = nil
+            currentProductId = nil
+            currentVipId = nil
+            currentVipGoodsId = nil
         } else {
-            showToast("购买遇到问题，如已扣款可尝试恢复购买")
+            // 其他失败原因也隐藏菊花
+            print("⚠️ [IAP] 支付失败，非用户取消: \(error.localizedDescription)")
+            hideLoading()
+            menberCenterView.setPaymentButtonEnabled(true)
+            // 清理保存的订单信息
+            currentOrderNo = nil
+            currentProductId = nil
+            currentVipId = nil
+            currentVipGoodsId = nil
         }
     }
     
@@ -540,24 +541,10 @@ extension MemberCenterViewController: StoreKitHelperDelegate {
 extension MemberCenterViewController {
     
     func memberViewDidClickRestore(_ view: MenberCenterView) {
-        guard !isLoading && !isProcessingPurchase else { return }
-        
-        // 立即设置标志位，防止重复点击
-        isProcessingPurchase = true
-        
-        // 检查是否已是会员
-        if let vipInfo = currentUserVipInfo, vipInfo.vip == 1 {
-            isProcessingPurchase = false
-            if let expireTime = vipInfo.expireTime {
-                showToast("您已是会员，\(expireTime)")
-            } else {
-                showToast("您已是会员，无需再次购买")
-            }
-            return
-        }
+        guard !isLoading else { return }
         
         print("🔄 [IAP] 点击恢复购买")
-        showLoading("恢复购买中...")
+        showLoading()
         StoreKitHelper.shared.restorePurchases()
     }
     
@@ -566,8 +553,6 @@ extension MemberCenterViewController {
         
         if productIds.isEmpty {
             hideLoading()
-            isProcessingPurchase = false
-            showToast("没有可恢复的购买")
         }
         // 有可恢复的产品时，PurchaseManager 会收到通知并处理验证，这里不需要再处理
         // 只需等待 PurchaseManager 的验证结果通知即可
@@ -576,7 +561,5 @@ extension MemberCenterViewController {
     func storeKitHelper(_ helper: StoreKitHelper, didFailRestorePurchasesWithError error: Error) {
         print("❌ [IAP] 恢复购买失败: \(error)")
         hideLoading()
-        isProcessingPurchase = false
-        showToast("恢复购买失败: \(error.localizedDescription)")
     }
 }

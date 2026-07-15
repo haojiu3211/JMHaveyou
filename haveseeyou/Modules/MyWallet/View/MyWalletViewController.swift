@@ -23,7 +23,6 @@ class MyWalletViewController: BaseViewController {
     private var currentOrderNo: String?
     private var currentProductId: String?
     private var currentDiamondId: String?
-    private var isProcessingPurchase = false
     
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -166,7 +165,6 @@ class MyWalletViewController: BaseViewController {
         return btn
     }()
     
-
     
     private let bottomContainerView: UIView = {
         let view = UIView()
@@ -205,7 +203,6 @@ class MyWalletViewController: BaseViewController {
         navigationController?.pushViewController(recordVC, animated: true)
     }
     
-
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -217,7 +214,7 @@ class MyWalletViewController: BaseViewController {
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 32)
         balanceTitleLabel.font = UIFont.systemFont(ofSize: 14)
         rechargeTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        underageLabel.font = UIFont.systemFont(ofSize: 12)
+        underageLabel.font = UIFont.systemFont(ofSize: 14)
         
         // 更新约束
         cardBackgroundImageView.snp.remakeConstraints { make in
@@ -496,19 +493,13 @@ class MyWalletViewController: BaseViewController {
     
     @objc private func confirmButtonTapped() {
         guard !isLoading else { return }
-        guard !isProcessingPurchase else {
-            print("⚠️ [IAP] 交易正在处理中，跳过重复点击")
-            return
-        }
         guard let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first else { return }
         
         let diamondItem = diamondItems[selectedIndexPath.item]
         guard let productId = diamondItem.iosProductId, !productId.isEmpty else {
-            showToast("产品信息不完整")
             return
         }
         guard let goodsId = diamondItem.id else {
-            showToast("商品ID缺失")
             return
         }
         
@@ -516,8 +507,10 @@ class MyWalletViewController: BaseViewController {
         currentProductId = productId
         currentDiamondId = "\(goodsId)"
         
-        // 设置正在处理标志
-        isProcessingPurchase = true
+        // 立即显示菊花，禁用按钮
+        showLoading()
+        confirmButton.isEnabled = false
+        confirmButton.alpha = 0.4
         
         // 先创建订单
         createCoinOrder(goodsId: "\(goodsId)", productId: productId)
@@ -525,8 +518,6 @@ class MyWalletViewController: BaseViewController {
     
     // MARK: - 创建活动币订单
     private func createCoinOrder(goodsId: String, productId: String) {
-        showLoading("获取订单中...")
-        
         NetworkManager.shared.request(
             PurchaseAPI.createCoinOrder(goodsId: goodsId),
             as: CreateCoinOrderData.self
@@ -535,8 +526,6 @@ class MyWalletViewController: BaseViewController {
             
             switch result {
             case .success(let orderData):
-                self.hideLoading()
-                
                 if let orderNo = orderData.orderNo {
                     print("✅ [Coin] 获取订单成功: \(orderNo)")
                     
@@ -554,20 +543,20 @@ class MyWalletViewController: BaseViewController {
                     print("🚀 [IAP] 发起购买: \(productId)")
                     StoreKitHelper.shared.purchaseProduct(productId: productId)
                 } else {
-                    self.showToast("获取订单失败")
-                    self.isProcessingPurchase = false
+                    self.hideLoading()
+                    self.confirmButton.isEnabled = self.isAgreed
+                    self.confirmButton.alpha = self.isAgreed ? 1.0 : 0.4
                 }
                 
             case .failure(let error):
                 self.hideLoading()
+                self.confirmButton.isEnabled = self.isAgreed
+                self.confirmButton.alpha = self.isAgreed ? 1.0 : 0.4
                 print("❌ [Coin] 获取订单失败: \(error)")
-                self.showToast("获取订单失败")
-                self.isProcessingPurchase = false
             }
         }
     }
     
-
     
     @objc private func agreementLabelTapped() {
         openRechargeAgreement()
@@ -630,7 +619,6 @@ extension MyWalletViewController {
     }
     
     private func verifyApplePayPurchaseWithOrderNo(receipt: String, productId: String, transactionId: String, originalTransactionId: String, orderNo: String) {
-        showLoading("确认订单中...")
         NetworkManager.shared.request(
             PurchaseAPI.applePayVerification(
                 receipt: receipt,
@@ -644,7 +632,6 @@ extension MyWalletViewController {
             as: VerifyPurchaseResponse.self
         ) { [weak self] result in
             guard let self = self else { return }
-            self.hideLoading()
             
             switch result {
             case .success(let response):
@@ -653,15 +640,24 @@ extension MyWalletViewController {
                 StoreKitHelper.shared.finishTransaction(transactionId: transactionId)
                 // 🔑 关键：移除持久化的交易记录
                 PendingTransactionManager.shared.removeTransaction(orderNo: orderNo)
-                self.showToast("购买成功！")
+                self.hideLoading()
+                self.confirmButton.isEnabled = self.isAgreed
+                self.confirmButton.alpha = self.isAgreed ? 1.0 : 0.4
                 self.refreshDiamondList()
-                self.isProcessingPurchase = false
+                // 清理保存的订单信息
+                self.currentOrderNo = nil
+                self.currentProductId = nil
+                self.currentDiamondId = nil
                 
             case .failure(let error):
                 print("❌ [Apple Pay] 验证购买失败: \(error)")
-                self.showToast("支付处理中，请稍后查看")
-                self.isProcessingPurchase = false
-                // ⚠️ 注意：验证失败时不要 finishTransaction，让交易留在队列中，下次启动时会再次回调
+                self.hideLoading()
+                self.confirmButton.isEnabled = self.isAgreed
+                self.confirmButton.alpha = self.isAgreed ? 1.0 : 0.4
+                // 清理保存的订单信息
+                self.currentOrderNo = nil
+                self.currentProductId = nil
+                self.currentDiamondId = nil
             }
         }
     }
@@ -670,7 +666,6 @@ extension MyWalletViewController {
         let orderNo = generateOrderNo()
         print("🚀 [Apple Pay] 订单号: \(orderNo)")
         
-        showLoading("确认订单中...")
         NetworkManager.shared.request(
             PurchaseAPI.applePayVerification(
                 receipt: receipt,
@@ -684,22 +679,22 @@ extension MyWalletViewController {
             as: VerifyPurchaseResponse.self
         ) { [weak self] result in
             guard let self = self else { return }
-            self.hideLoading()
             
             switch result {
             case .success(let response):
                 print("✅ [Apple Pay] 购买验证成功, orderNo: \(response.orderNo ?? "unknown")")
                 // 服务器验证成功后，完成交易
                 StoreKitHelper.shared.finishTransaction(transactionId: transactionId)
-                self.showToast("购买成功！")
+                self.hideLoading()
+                self.confirmButton.isEnabled = self.isAgreed
+                self.confirmButton.alpha = self.isAgreed ? 1.0 : 0.4
                 self.refreshDiamondList()
-                self.isProcessingPurchase = false
                 
             case .failure(let error):
                 print("❌ [Apple Pay] 验证购买失败: \(error)")
-                self.showToast("支付处理中，请稍后查看")
-                self.isProcessingPurchase = false
-                // ⚠️ 注意：验证失败时不要 finishTransaction，让交易留在队列中，下次启动时会再次回调
+                self.hideLoading()
+                self.confirmButton.isEnabled = self.isAgreed
+                self.confirmButton.alpha = self.isAgreed ? 1.0 : 0.4
             }
         }
     }
@@ -722,13 +717,13 @@ extension MyWalletViewController: StoreKitHelperDelegate {
     
     func storeKitHelper(_ helper: StoreKitHelper, didFailFetchProductsWithError error: Error) {
         print("❌ [IAP] 获取产品失败: \(error)")
-        showToast("获取产品信息失败")
     }
     
     func storeKitHelper(_ helper: StoreKitHelper, didPurchaseProduct productId: String, receipt: String, transactionId: String) {
         print("✅ [IAP] 苹果支付成功，开始服务器验证")
         
-        showToast("支付处理中，请稍后查看")
+        // 时机2：收到支付成功回调
+        // 保持菊花显示状态
         
         if let orderNo = currentOrderNo {
             verifyApplePayPurchaseWithOrderNo(
@@ -746,22 +741,32 @@ extension MyWalletViewController: StoreKitHelperDelegate {
                 originalTransactionId: transactionId
             )
         }
-        
-        currentOrderNo = nil
-        currentProductId = nil
-        currentDiamondId = nil
-        isProcessingPurchase = false
     }
     
     func storeKitHelper(_ helper: StoreKitHelper, didFailPurchaseProductWithError error: Error) {
         print("❌ [IAP] 购买失败: \(error)")
         
+        // 时机3：收到用户取消回调
         if let nsError = error as NSError?, nsError.code == SKError.Code.paymentCancelled.rawValue {
-            showToast("已取消购买")
+            // 只有明确是用户取消才隐藏菊花和恢复按钮
+            print("ℹ️ [IAP] 用户取消支付")
+            hideLoading()
+            confirmButton.isEnabled = isAgreed
+            confirmButton.alpha = isAgreed ? 1.0 : 0.4
+            // 清理保存的订单信息
+            currentOrderNo = nil
+            currentProductId = nil
+            currentDiamondId = nil
         } else {
-            showToast("购买失败: \(error.localizedDescription)")
+            // 其他失败原因也隐藏菊花
+            print("⚠️ [IAP] 支付失败，非用户取消: \(error.localizedDescription)")
+            hideLoading()
+            confirmButton.isEnabled = isAgreed
+            confirmButton.alpha = isAgreed ? 1.0 : 0.4
+            // 清理保存的订单信息
+            currentOrderNo = nil
+            currentProductId = nil
+            currentDiamondId = nil
         }
-        
-        isProcessingPurchase = false
     }
 }

@@ -53,7 +53,7 @@ class BaseViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .white
-        label.text = "加载中..."
+        label.text = ""
         label.textAlignment = .center
         return label
     }()
@@ -218,29 +218,20 @@ class BaseViewController: UIViewController {
 
     /// 显示 Loading
     func showLoading(_ message: String = "加载中...") {
-        loadingLabel.text = message
-
         if loadingOverlay.superview == nil {
             view.addSubview(loadingOverlay)
             view.addSubview(loadingContainer)
-            loadingContainer.addSubviews(loadingIndicator, loadingLabel)
+            loadingContainer.addSubview(loadingIndicator)
 
             loadingOverlay.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
             loadingContainer.snp.makeConstraints { make in
                 make.center.equalToSuperview()
-                make.width.equalTo(120)
-                make.height.equalTo(100)
+                make.width.height.equalTo(80)
             }
             loadingIndicator.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.top.equalToSuperview().offset(20)
-            }
-            loadingLabel.snp.makeConstraints { make in
-                make.top.equalTo(loadingIndicator.snp.bottom).offset(12)
-                make.centerX.equalToSuperview()
-                make.left.right.equalToSuperview().inset(8)
+                make.center.equalToSuperview()
             }
         }
 

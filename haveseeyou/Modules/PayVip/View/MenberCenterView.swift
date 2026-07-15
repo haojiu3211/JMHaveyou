@@ -331,6 +331,15 @@ extension MenberCenterView {
         collectionView.reloadData()
     }
     
+    /// 设置支付按钮是否可用
+    func setPaymentButtonEnabled(_ enabled: Bool) {
+        upgradeButton.isEnabled = enabled
+        agreementCheckbox.isSelected = enabled
+        UIView.animate(withDuration: 0.2) {
+            self.upgradeButton.alpha = enabled ? 1.0 : 0.4
+        }
+    }
+    
     /// 从VIP产品数据更新产品列表
     func updateWithVipProducts(_ products: [VipProductItem]) {
         var newPlans: [PlanItem] = []
